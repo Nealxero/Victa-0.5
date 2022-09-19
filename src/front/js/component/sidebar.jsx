@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import Logo from "../../img/rigo-baby.jpg";
-import { Logout } from "./logout";
 import { LogoutModal} from "./logout-modal.jsx";
 
 const Sidebar = ({ children }) => {
