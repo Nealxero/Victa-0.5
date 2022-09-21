@@ -1,39 +1,39 @@
 const API_URL =
-  "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu64.gitpod.io/";
+  "http://192.168.22.125:3001/api/";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      users: {
-        favorites: [],
-
-        daily_plans: [],
-      },
+      users: [],
       meals: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
 
-      loadUsers: (users) => {
+      loadUsers: () => {
         const store = getStore();
-
-        fetch(`${API_URL}users`)
-          .then((data) => data.json())
+        const userToken = localStorage.getItem('user_id');
+        
+        fetch(`${API_URL}user/${userToken}/daily_meals`)
+          .then(data => data.json())
           .then(async (data) => {
-            let newArray = store.users;
+            
+            let newArray = store['users'];
+          
 
             newArray = newArray.concat(data);
             setStore({ users: newArray });
+            
           });
       },
 
-      loadMeals: (meals) => {
+      loadMeals: () => {
         const store = getStore();
 
-        fetch(`${API_URL}meals`)
-          .then((data) => data.json())
+        fetch(`${API_URL}meals`, )
+          .then(data => data.json())
           .then(async (data) => {
-            let newArray = store.meals;
+            let newArray = store['meals'];
 
             newArray = newArray.concat(data);
             setStore({ meals: newArray });
@@ -76,6 +76,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         let newFavorites = store.users.favorites.filter((item, i) => i != data);
         setStore({ favorites: newFavorites });
       },
+      loadSomeData: () => {
+				getActions().loadUsers()
+        getActions().loadMeals()
+				
+			}
     },
 
   };

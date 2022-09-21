@@ -17,7 +17,6 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     # Relationships
     daily_plans = db.relationship(
