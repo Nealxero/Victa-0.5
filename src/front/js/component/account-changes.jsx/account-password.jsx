@@ -1,15 +1,6 @@
 import React, { useContext, useState } from "react";
-import { useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import "../../styles/account.css";
-import getState from "../store/flux";
-import AddModal from "../component/add-modal.jsx";
-import { Accordion } from "react-bootstrap";
-import AccordionBody from "react-bootstrap/esm/AccordionBody";
-import AccordionItem from "react-bootstrap/esm/AccordionItem";
-import { InputGroup } from "react-bootstrap";
-import { Form } from "react-bootstrap";
+import { ProvideAuth } from "./use-auth.js";
+
 
  function PasswordAccordion ()  {
 
@@ -46,3 +37,6 @@ import { Form } from "react-bootstrap";
 }
 
 export default PasswordAccordion
+
+
+/// this is kinda scrapped 

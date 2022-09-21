@@ -71,7 +71,7 @@ def create_new_user():
         second_block = []
         third_block = []
         user_id = user.id
-        daily_meal = Meal.create(name=daily_plan_name, first_block=first_block, second_block=second_block, third_block=third_block, user_id=user_id)
+        daily_meal = Meal.create(name=daily_plan_name, first_block=first_block, second_block=second_block, third_block=third_block, user_id=user_i)
         db.session.add(daily_meal)
         db.session.commit()
 

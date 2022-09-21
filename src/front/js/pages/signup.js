@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -23,6 +24,7 @@ export const SignUp = () => {
         },
       }
     );
+    
     const confirmation = await response.json();
     if (response.status == 200) {
       navigate("/login");

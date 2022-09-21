@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/login.css";
+import { Navigate } from "react-router-dom";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -9,8 +10,9 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  let navigate = useNavigate();
+
   const logClick = async (e) => {
-   
     e.preventDefault();
     const loginOptions = {
       method: "POST",
@@ -27,15 +29,19 @@ export const Login = () => {
       "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu64.gitpod.io/api/login",
       loginOptions
     )
-      .then((resp) => resp.json())
+      .then((resp) => {
+        console.log(resp);
+        if (resp.status == 401) return false;
+        return resp.json();
+      })
       .then((res) => {
+        if (!res) return alert("incorrect ");
         alert("Login in successfull");
-        return res;
+        localStorage.setItem("jwt-token",res.token);
+        console.log(res);
+        navigate("/dashboard");
       })
       .catch((error) => console.log("Something went wrong", error));
-
-    localStorage.setItem("jwt-token", promiseResponse.token);
-    console.log(promiseResponse);
   };
 
   return (
