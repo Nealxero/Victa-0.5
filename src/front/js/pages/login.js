@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/login.css";
+import { Navigate } from "react-router-dom";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -9,8 +10,9 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  let navigate = useNavigate();
+
   const logClick = async (e) => {
-   
     e.preventDefault();
     const loginOptions = {
       method: "POST",
@@ -27,18 +29,28 @@ export const Login = () => {
       "http://192.168.22.125:3001/api/login",
       loginOptions
     )
-      .then((resp) => resp.json())
+      .then((resp) => {
+        console.log(resp);
+        if (resp.status == 401) return false;
+        return resp.json();
+      })
       .then((res) => {
+        if (!res) return alert("incorrect ");
         alert("Login in successfull");
-        return res;
+        localStorage.setItem("jwt-token",res.token);
+        console.log(res);
+        navigate("/dashboard");
       })
       .catch((error) => console.log("Something went wrong", error));
+<<<<<<< HEAD
 
     localStorage.setItem("jwt-token", promiseResponse.token);
     localStorage.setItem("user_id", promiseResponse.user_id);
 
     
     console.log(promiseResponse);
+=======
+>>>>>>> c8254be8f9a257d6777cae1f5019bcc51d7aeb49
   };
 
   return (

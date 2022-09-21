@@ -47,3 +47,6 @@ function  EmailAccordion ()  {
 }
 
 export default EmailAccordion
+
+
+/// this is kinda scrapped 
