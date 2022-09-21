@@ -17,7 +17,10 @@ class User(db.Model, SerializerMixin):
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
+<<<<<<< HEAD
+=======
     
+>>>>>>> c8254be8f9a257d6777cae1f5019bcc51d7aeb49
 
     # Relationships
     daily_plans = db.relationship(

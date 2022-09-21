@@ -26,7 +26,7 @@ export const Login = () => {
     };
 
     const promiseResponse = await fetch(
-      "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu64.gitpod.io/api/login",
+      "http://192.168.22.125:3001/api/login",
       loginOptions
     )
       .then((resp) => {
@@ -42,6 +42,15 @@ export const Login = () => {
         navigate("/dashboard");
       })
       .catch((error) => console.log("Something went wrong", error));
+<<<<<<< HEAD
+
+    localStorage.setItem("jwt-token", promiseResponse.token);
+    localStorage.setItem("user_id", promiseResponse.user_id);
+
+    
+    console.log(promiseResponse);
+=======
+>>>>>>> c8254be8f9a257d6777cae1f5019bcc51d7aeb49
   };
 
   return (

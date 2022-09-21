@@ -1,8 +1,9 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+from unittest import result
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Meal
+from api.models import db, User, Meal, DailyPlan
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -59,6 +60,15 @@ DAYS_OF_THE_WEEK = {
 
 @api.route('/signup', methods=['POST'])
 def create_new_user():
+<<<<<<< HEAD
+    try: 
+    
+        user_email = request.json.get('user-email', None)
+        user_password = request.json.get('user-password', None)
+        user_username = request.json.get('user-name', None)
+        user = User(password=user_password, email=user_email, username=user_username)
+        db.session.add(user)
+=======
     user_email = request.json.get('user-email', None)
     user_password = request.json.get('user-password', None)
     user_username = request.json.get('user-name', None)
@@ -73,13 +83,21 @@ def create_new_user():
         user_id = user.id
         daily_meal = Meal.create(name=daily_plan_name, first_block=first_block, second_block=second_block, third_block=third_block, user_id=user_i)
         db.session.add(daily_meal)
+>>>>>>> c8254be8f9a257d6777cae1f5019bcc51d7aeb49
         db.session.commit()
+        for day in DAYS_OF_THE_WEEK:
+            plan = DailyPlan(name=day, user_id=user.id)
+            db.session.add(plan)
+            db.session.commit()
 
-    if user is not None:
-        print(user)
-        return jsonify({"message":"User created succesfully!"}), 201
-    else:
-        return jsonify({"message":"Something went wrong, Try again!"}), 500
+        access_token = create_access_token(identity=user.email)
+
+        return jsonify({ "token": access_token, "user_id": user.id, "message":"User created succesfully!"}), 201
+    
+
+    except Exception as error:
+
+        return jsonify({"message":"Something went wrong, Try again!"})
 
 
 @api.route('/login', methods=['POST'])
@@ -109,8 +127,8 @@ def user_logout():
 @api.route('/meals', methods=['GET'])
 def meal_list(): 
     meal = Meal.query.all()
-    response_body_meal = list(map(lambda s: s.serialize(), meal))
-    return jsonify(response_body_meal, print(error)), 200
+    response_body_meal = list(map(lambda s: s.to_dict(), meal))
+    return jsonify(response_body_meal), 200
 
 @api.route('/meals/<meal_id>', methods=['GET'])
 def get_meal_by_id(meal_id):

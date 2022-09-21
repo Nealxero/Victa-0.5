@@ -4,7 +4,7 @@ import Calendar from "../component/calendar.jsx";
 const Dashboard = () => {
   return (
     <div>
-      <Calendar/>
+      <Calendar />
     </div>
   );
 };
