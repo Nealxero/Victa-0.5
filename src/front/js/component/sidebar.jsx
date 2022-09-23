@@ -38,7 +38,7 @@ const Sidebar = ({ children }) => {
     },
 
     {
-      path: "dashboard",
+      path: "/account",
       name: "Log Out",
       icon: <LogoutModal/>,
       

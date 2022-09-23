@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FaSignOutAlt } from "react-icons/fa";
-
+import { Navigate, useNavigate } from "react-router-dom";
 
 export function LogoutModal() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const LogoutClick = () => {
-    localStorage.removeItem("jwt-token");
+  let navigate = useNavigate()
+
+  const LogoutClick = async () => {
+    localStorage.removeItem("jwt-token")
+    
   };
 
   return (
@@ -32,6 +35,7 @@ export function LogoutModal() {
               LogoutClick();
               handleClose();
             }}
+            
           >
             Yes
           </Button>

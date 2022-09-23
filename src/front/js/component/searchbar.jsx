@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/searchbar.css";
 import {FaSearch, FaRegTimesCircle} from 'react-icons/fa';
+import Sidebar from "../component/sidebar.jsx";
 
 function SearchBar({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
@@ -26,6 +27,7 @@ function SearchBar({ placeholder, data }) {
   };
 
   return (
+    <Sidebar>
     <div className="search">
       <div className="searchInputs">
         <input
@@ -55,6 +57,7 @@ function SearchBar({ placeholder, data }) {
         </div>
       )}
     </div>
+    </Sidebar>
   );
 }
 

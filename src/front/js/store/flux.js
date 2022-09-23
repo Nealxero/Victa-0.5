@@ -4,6 +4,7 @@ const API_URL =
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      token : null,
       users: {
         favorites: [],
 
@@ -63,6 +64,21 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ [plans]: newArray });
           });
       },
+      // this function is to prevent the view of the app if the user has no token (logged in)
+      protectedData : async () => {
+				
+				const token = sessionStorage.getItem('token');
+				const response = await fetch('https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/private', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + token
+					}
+				});
+				if (!response.ok) throw Error('login request failed, try again');
+				const responseJson = await response.json();
+				setStore(responseJson);
+			},
 
       updateFavoriteList: (newElement) => {
         const store = getStore();

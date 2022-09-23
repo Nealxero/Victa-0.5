@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, redirect, session
 from api.models import db, User, Meal
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
@@ -63,7 +63,8 @@ def create_new_user():
     user_email = request.json.get('user-email', None)
     user_password = request.json.get('user-password', None)
     user_username = request.json.get('user-name', None)
-    user = User.signup(password=user_password, email=user_email, username=user_username)
+    user = User.signup(password=user_password,
+                       email=user_email, username=user_username)
     db.session.add(user)
     db.session.commit()
 
@@ -103,7 +104,7 @@ def password_password():
     db.session.commit()
 
     # Then we need to send the random code to the user
-    
+
     # token
     return jsonify({"token": access_token, "user_id": user.id, "email": user.email})
 
@@ -196,3 +197,32 @@ def get_user_daily_plan(user_id):
         return jsonify(user.to_dict()), 200
     except Exception as error:
         return jsonify("This user doesn't have daily meals", print(error)), 400
+
+# ---------------- Update User Data --------------------
+
+
+@api.route('/user/<user_id>/private', methods=['PUT'])
+def user_update_email(user_id):
+    try:
+        user = User.query.get(id)
+        if not user:
+            return jsonify({"msg": "No user was found"}), 404
+        email = request.json.get('user-email')
+        db.session.update(user.email)
+        db.session.commit()
+        return jsonify(user.serialize()), 200
+    except Exception as error:
+        return jsonify("This user doesn't exist", print(error)), 400 ###
+
+@api.route('/user/<user_id>/private', methods=['PUT'])
+def user_update_password(user_id):
+    try:
+        user = User.query.get(id)
+        if not user:
+            return jsonify({"msg": "No user was found"}), 404
+        password = request.json.get('user-password')
+        db.session.update(user.password)
+        db.session.commit()
+        return jsonify(user.serialize()), 200
+    except Exception as error:
+        return jsonify("This user doesn't exist", print(error)), 400 ###
