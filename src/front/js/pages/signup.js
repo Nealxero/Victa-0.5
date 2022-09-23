@@ -24,7 +24,6 @@ export const SignUp = () => {
         },
       }
     );
-    
     const confirmation = await response.json();
     if (response.status == 200) {
       navigate("/login");

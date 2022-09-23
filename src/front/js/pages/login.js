@@ -42,6 +42,12 @@ export const Login = () => {
         navigate("/dashboard");
       })
       .catch((error) => console.log("Something went wrong", error));
+
+    localStorage.setItem("jwt-token", promiseResponse.token);
+    localStorage.setItem("user_id", promiseResponse.user_id);
+
+    
+    console.log(promiseResponse);
   };
 
   return (

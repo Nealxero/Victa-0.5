@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <Sidebar>
     <div>
-      <Calendar/>
+      <Calendar />
     </div>
     </Sidebar>
   );
