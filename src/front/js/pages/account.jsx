@@ -87,7 +87,7 @@ const Account = () => {
                   <InputGroup
                     classname="mb-2"
                     id="basic-url"
-                    value={"updateEmail"}
+                    name={"updateEmail"}
                     onChange={(e) => setUpdateEmail(e.target.value)}
                   >
                     <Form.Control
