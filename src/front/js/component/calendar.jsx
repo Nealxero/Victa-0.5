@@ -6,8 +6,8 @@ import DailyPlan from './dailyplan.jsx';
 
 function Calendar() {
     const { store, actions } = useContext(Context);
-    const plans = store.users.map((item, index) => { return item.daily_plans })
-
+    const plans = store?.users?.map((item, index) => { return item.daily_plans })
+    console.log(store.users)
 
     if (plans.length == 0) return <p>Loading</p>
     return (

@@ -13,25 +13,21 @@ import {
 } from "react-bootstrap";
 import Sidebar from "../component/sidebar.jsx";
 
-
 const Account = () => {
-  const [updatePassword, setUpdatePassword] = useState(false);
-  const [updateEmail, setUpdateEmail] = useState(false);
+  const [updatePassword, setUpdatePassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
+  const [checkEmail, setCheckEmail] = useState("");
+  const [updateEmail, setUpdateEmail] = useState("");
+  const [id] = useState(localStorage.getItem("user_id"))
 
-  const updateClick = async (e) => {
+  const updateClickPass = async (e) => {
     e.preventDefault();
-    const updateMail = await fetch(
-      "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/account",
-      {
-        method: "PUT",
-        body: JSON.stringify({ "user-email": updateEmail }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+
+    console.log(JSON.stringify({ "user-password": updatePassword }));
+
+    if (updatePassword === checkPassword) {
     const updatePass = await fetch(
-      "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/account",
+      'https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/user/account_password',
       {
         method: "PUT",
         body: JSON.stringify({ "user-password": updatePassword }),
@@ -40,16 +36,41 @@ const Account = () => {
         },
       }
     );
-    const confirmMail = await updateMail.json();
-    if (updateMail.status == 200) {
-      alert("all working fine for mail");
-    }
-    
     const confirmPass = await updatePass.json();
     if (updatePass.status == 200) {
       alert("all working fine for password");
     }
   };
+  };
+
+
+  const updateClickMail = async (e) => {
+    e.preventDefault();
+
+    console.log(JSON.stringify({ "user-email": updateEmail }));
+
+    if (updateEmail === checkEmail) {
+      const updateMail = await fetch(
+        "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/user/account_email",
+        {
+          method: "PUT",
+          body: JSON.stringify({ "user-email": updateEmail }),
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer "+ localStorage.getItem("jwt-token")
+          },
+        }
+      );
+
+      const confirmMail = await updateMail.json();
+      if (updateMail.status == 200) {
+        alert("all working fine for mail");
+      }
+    } else {
+      alert("Los valores no son iguales");
+    }
+  };
+
   return (
     <Sidebar>
       <div className="pages">
@@ -60,32 +81,38 @@ const Account = () => {
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Change Email</Accordion.Header>
                 <Accordion.Body>
-                  <Form.Label
-                    htmlFor="basic-url"
-                    value={updateEmail}
-                    onChange={(e) => setUpdateEmail(e.target.value)}
-                  >
+                  <Form.Label htmlFor="basic-url">
                     Please enter your new Email
                   </Form.Label>
-                  <InputGroup classname="mb-2">
+                  <InputGroup
+                    classname="mb-2"
+                    id="basic-url"
+                    value={"updateEmail"}
+                    onChange={(e) => setUpdateEmail(e.target.value)}
+                  >
                     <Form.Control
                       placeholder="Email"
                       aria-label="email"
                       aria-describedby="basic-addon1"
                     />
                   </InputGroup>
-                  <Form.Label htmlFor="basic-url">
+                  <Form.Label htmlFor="basic-url2">
                     Please confirm your new Email
                   </Form.Label>
-                  <InputGroup classname="mb-2">
+                  <InputGroup
+                    classname="mb-2"
+                    id="basic-url2"
+                    value={"checkEmail"}
+                    onChange={(e) => setCheckEmail(e.target.value)}
+                  >
                     <Form.Control
                       placeholder=" Repeat Email"
                       aria-label="email"
                       aria-describedby="basic-addon1"
                     />
                   </InputGroup>
-                  <Button id="emailbtn" onClick={updateClick}>
-                    {" "}
+                  <Button id="emailbtn" onClick={updateClickMail}>
+                    
                     Submit Changes
                   </Button>
                 </Accordion.Body>
@@ -97,30 +124,37 @@ const Account = () => {
                 <Accordion.Header>Change Password</Accordion.Header>
                 <Accordion.Body>
                   <Form.Label
-                    htmlFor="basic-url"
-                    value={updatePassword}
-                    onChange={(e) => setUpdatePassword(e.target.value)}
+                    htmlFor="basic-url3"
+                    
                   >
                     Please enter your new Password
                   </Form.Label>
-                  <InputGroup classname="mb-2">
+                  <InputGroup classname="mb-2"
+                  id="basic-url3"
+                  name={updatePassword}
+                  onChange={(e) => setUpdatePassword(e.target.value)}
+                  >
                     <Form.Control
                       placeholder="Password"
                       aria-label="username"
                       aria-describedby="basic-addon1"
                     />
                   </InputGroup>
-                  <Form.Label htmlFor="basic-url">
+                  <Form.Label htmlFor="basic-url4">
                     Please confirm your new Password
                   </Form.Label>
-                  <InputGroup classname="mb-2">
+                  <InputGroup classname="mb-2"
+                  id="basic-url4"
+                  name={checkPassword}
+                  onChange={(e) => setCheckPassword(e.target.value)}
+                  >
                     <Form.Control
                       placeholder="Repeat Password"
                       aria-label="username"
                       aria-describedby="basic-addon1"
                     />
                   </InputGroup>
-                  <Button id="passbtn" onClick={updateClick}>
+                  <Button id="passbtn" onClick={updateClickPass}>
                     {" "}
                     Submit Changes{" "}
                   </Button>

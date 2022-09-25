@@ -6,11 +6,11 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token : null,
       users: {
-        favorites: [],
-
         daily_plans: [],
+        favorites: []
       },
       meals: [],
+      
     },
     actions: {
       // Use getActions to call a function within a fuction

@@ -24,7 +24,7 @@ const Layout = () => {
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
 
-  console.log(localStorage.getItem("jwt-token"))
+  //console.log(localStorage.getItem("jwt-token"))
 
   //(localStorage.getItem("jwt-token") == null || localStorage.getItem("jwt-token") == "undefined" ){
     return ( 

@@ -40,6 +40,8 @@ def get_user(user_id):
             'username': user.username,
             'email': user.email,
             'daily_plans': f'./api/user/{user.id}/daily_meals',
+            'account_password': f'./api/user/{user.id}/account_password',
+            'account_email': f'./api/user/{user.id}/account_email',
             'favorites': f'./api/user/{user.id}/favorites'
 
         })
@@ -207,31 +209,51 @@ def get_user_daily_plan(user_id):
         return jsonify("This user doesn't have daily meals", print(error)), 400
 
 
-@api.route('/user/<user_id>/private', methods=['PUT'])
-def user_update_email(user_id):
-    try:
-        user = User.query.get(id)
-        if not user:
-            return jsonify({"msg": "No user was found"}), 404
-        email = request.json.get('user-email')
-        db.session.update(user.email)
-        db.session.commit()
-        return jsonify(user.serialize()), 200
-    except Exception as error:
-        return jsonify("This user doesn't exist", print(error)), 400 ###
+@api.route('/user/account_email', methods=['PUT'])
+@jwt_required()
+def user_update_email():
+    identity = get_jwt_identity()
+    user_email = request.json.get('user-email', None)
+    user = User.query.filter_by(email=user_email).one_or_none()
+    user.email = new_email
 
-@api.route('/user/<user_id>/private', methods=['PUT'])
-def user_update_password(user_id):
-    try:
-        user = User.query.get(id)
-        if not user:
-            return jsonify({"msg": "No user was found"}), 404
-        password = request.json.get('user-password')
-        db.session.update(user.password)
-        db.session.commit()
-        return jsonify(user.serialize()), 200
-    except Exception as error:
-        return jsonify("This user doesn't exist", print(error)), 400 ###
+    db.session.update(user.email)
+    db.session.commit()
+    return jsonify(user=user.to_dict()), 200
+
+
+    # try:
+    #     user = User.query.get(id)
+    #     if not user:
+    #         return jsonify({"msg": "No user was found"}), 404
+    #     email = request.json.get('user-email')
+    #     db.session.update(user.email)
+    #     db.session.commit()
+    #     return jsonify(user.serialize()), 200
+    # except Exception as error:
+    #     return jsonify("This user doesn't exist", print(error)), 400 ###
+
+@api.route('/user/account_password', methods=['PUT'])
+@jwt_required()
+def user_update_password():
+    identity = get_jwt_identity()
+    user_password = request.json.get('user-password', None)
+    user = User.query.filter_by(password=user_password).one_or_none()
+    user.password = new_password
+
+    db.session.update(user.password)
+    db.session.commit()
+    return jsonify(user=user.to_dict()), 200
+    # try:
+    #     user = User.query.get(id)
+    #     if not user:
+    #         return jsonify({"msg": "No user was found"}), 404
+    #     password = request.json.get('user-password')
+    #     db.session.update(user.password)
+    #     db.session.commit()
+    #     return jsonify(user.serialize()), 200
+    # except Exception as error:
+    #     return jsonify("This user doesn't exist", print(error)), 400 ###
 
 
 
