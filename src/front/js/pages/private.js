@@ -1,12 +1,20 @@
-import React, {useContext} from "react"
+import React, {useContext, useEffect} from "react"
 import { Context } from "../store/appContext";
 import { Login } from "./login";
 import Logout from "./logout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export const Private = () => {
     const { store, actions } = useContext(Context);
+    let navigate = useNavigate();
     console.log(localStorage.getItem("token"))
+
+    useEffect(() => {
+		if (store.token === undefined || store.token === null) navigate('/login');
+		else  actions.protectedData();
+	}, []);
+
     if (localStorage.getItem("jwt-token") == null || localStorage.getItem("jwt-token") == "undefined" ){
         return(
             <>

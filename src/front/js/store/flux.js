@@ -1,11 +1,16 @@
 const API_URL =
-  "http://192.168.22.125:3001/api/";
+  "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      users: [],
+      token : null,
+      users: {
+        daily_plans: [],
+        favorites: []
+      },
       meals: [],
+      
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -63,6 +68,21 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ [plans]: newArray });
           });
       },
+      // this function is to prevent the view of the app if the user has no token (logged in)
+      protectedData : async () => {
+				
+				const token = sessionStorage.getItem('token');
+				const response = await fetch('https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/private', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + token
+					}
+				});
+				if (!response.ok) throw Error('login request failed, try again');
+				const responseJson = await response.json();
+				setStore(responseJson);
+			},
 
       updateFavoriteList: (newElement) => {
         const store = getStore();
