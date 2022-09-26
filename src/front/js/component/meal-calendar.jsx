@@ -1,18 +1,31 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import '../../styles/calendar.css';
-import {FaPlus} from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import PropTypes from "prop-types";
+import AddModal from './add-modal';
+import { Example } from './mealcard-modal';
 
-function DailyMeal () {
-    const [isSelected, setIsSelected] = useState(false);
-    const pickMeal = () => setIsSelected(!isSelected);
-  
-    console.log(pickMeal)
-    return(
-        <div class="row-sm ms auto" className='meal' activeclassname="active" >
-            <FaPlus onClick={pickMeal}/>
+
+export const DailyMeal = props => {
+    
+
+    if (props.block.length == 0) return (
+        <div className='row-sm ms auto meal' activeclassname="active" >
             
-            </div>
+            <Example meals={props.block} name={props.name} type={props.type} />
+            
+        </div>
+    )
+    return (
+        <div className='row-sm ms auto meal' activeclassname="active" >
+            <Example meals={props.block} name={props.name} type={props.type} />
+            {props.block.map((meal, index) => { return <p>{meal.name}</p>})}
+            
+        </div>
     )
 };
 
-export default DailyMeal;
+DailyMeal.propTypes = {
+    match: PropTypes.object
+};
+

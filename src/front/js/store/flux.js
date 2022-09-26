@@ -1,14 +1,11 @@
 const API_URL =
-  "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api";
+  "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token : null,
-      users: {
-        daily_plans: [],
-        favorites: []
-      },
+      users: [],
       meals: [],
       
     },
@@ -27,6 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           
 
             newArray = newArray.concat(data);
+            console.log(data);
             setStore({ users: newArray });
             
           });

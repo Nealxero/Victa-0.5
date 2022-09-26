@@ -1,13 +1,17 @@
 import React from 'react';
 import '../../styles/calendar.css';
+import PropTypes from "prop-types";
 
 
-function DayOfWeek () {
+export const DayOfWeek = props =>  {
+    
     return(
-            <div className="row" class='dayHeader'>Header</div>
+            <div className="row" class='dayHeader'>{props.name}</div>
            
          
     )
 };
 
-export default DayOfWeek;
+DayOfWeek.propTypes = {
+    match: PropTypes.object
+};

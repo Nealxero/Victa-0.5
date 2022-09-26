@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/searchbar.css";
-import {FaSearch, FaRegTimesCircle} from 'react-icons/fa';
+import { FaSearch, BiTrash, FaRegTimesCircle } from 'react-icons/fa';
 import Sidebar from "../component/sidebar.jsx";
 import { Card, Button } from "react-bootstrap";
 import { CardGroup } from "react-bootstrap";

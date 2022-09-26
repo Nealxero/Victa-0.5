@@ -12,12 +12,12 @@ MAX_DAILY_PLANS = 7
 
 
 class User(db.Model, SerializerMixin):
-    serialize_only = ('id', 'username', 'email', 'daily_plans.id')
+    serialize_only = ('id', 'username', 'email', "password",
+                      'daily_plans.id', 'daily_plans.name')
     id = db.Column(db.Integer, unique=True, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    
 
     # Relationships
     daily_plans = db.relationship(
@@ -27,7 +27,6 @@ class User(db.Model, SerializerMixin):
 
     def __repr__(self):
         return f'<User {self.email}>'
-
 
     @classmethod
     def signup(cls, email, password, username):
@@ -55,21 +54,24 @@ class User(db.Model, SerializerMixin):
 
 
 first_block = db.Table('first_block',
-                    db.Column('daily_plan_id', db.Integer,
-                              db.ForeignKey('daily_plan.id')),
-                    db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'))
-                    
-                    )
+                       db.Column('daily_plan_id', db.Integer,
+                                 db.ForeignKey('daily_plan.id')),
+                       db.Column('meal_id', db.Integer,
+                                 db.ForeignKey('meal.id'))
+
+                       )
 second_block = db.Table('second_block',
-                    db.Column('daily_plan_id', db.Integer,
-                              db.ForeignKey('daily_plan.id')),
-                    db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'))
-                    )
+                        db.Column('daily_plan_id', db.Integer,
+                                  db.ForeignKey('daily_plan.id')),
+                        db.Column('meal_id', db.Integer,
+                                  db.ForeignKey('meal.id'))
+                        )
 third_block = db.Table('third_block',
-                    db.Column('daily_plan_id', db.Integer,
-                              db.ForeignKey('daily_plan.id')),
-                    db.Column('meal_id', db.Integer, db.ForeignKey('meal.id'))
-                    )
+                       db.Column('daily_plan_id', db.Integer,
+                                 db.ForeignKey('daily_plan.id')),
+                       db.Column('meal_id', db.Integer,
+                                 db.ForeignKey('meal.id'))
+                       )
 
 TYPES = [
     ('monday', 'Monday'),
@@ -82,8 +84,10 @@ TYPES = [
 
 ]
 
+
 class DailyPlan(db.Model, SerializerMixin):
-    serialize_only = ('id', 'first_block.id', 'first_block.name', 'second_block.id', 'second_block.name', 'third_block.id', 'third_block.name')
+    serialize_only = ('id', 'name', 'first_block.id', 'first_block.name',
+                      'second_block.id', 'second_block.name', 'third_block.id', 'third_block.name')
     id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String(120), nullable=True)
     first_block = db.relationship(
@@ -96,12 +100,8 @@ class DailyPlan(db.Model, SerializerMixin):
     # Relationships
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    
-
     def __repr__(self):
         return f'DailyPlan( id : "{str(self.id)}",  first_block : "{str(self.first_block)}", second_block : "{str(self.second_block)}",  third_block : "{str(self.third_block)}")'
-
-    
 
 
 @event.listens_for(DailyPlan.user_id, 'set', retval=True)
@@ -118,7 +118,7 @@ def plans_per_user_check(target, value, oldvalue, initiator):
 
 
 class Meal(db.Model, SerializerMixin):
-    serialize_only = ('id', 'name', 'sumarize')
+    # serialize_only = ('id', 'name', 'sumarize', "Breakfast")
     id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     sumarize = db.Column(db.String(120), unique=False, nullable=False)
@@ -143,10 +143,6 @@ class Meal(db.Model, SerializerMixin):
             return instance
         else:
             return None
-    
-        
-
-
 
 
 #                        Dont know if necessary
