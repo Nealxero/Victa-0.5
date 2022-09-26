@@ -12,7 +12,11 @@ MAX_DAILY_PLANS = 7
 
 
 class User(db.Model, SerializerMixin):
+<<<<<<< HEAD
     serialize_only = ('id', 'username', 'email',
+=======
+    serialize_only = ('id', 'username', 'email', "password",
+>>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec
                       'daily_plans.id', 'daily_plans.name')
     id = db.Column(db.Integer, unique=True, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
@@ -118,7 +122,11 @@ def plans_per_user_check(target, value, oldvalue, initiator):
 
 
 class Meal(db.Model, SerializerMixin):
+<<<<<<< HEAD
     serialize_only = ('id', 'name', 'sumarize', 'favorite')
+=======
+    # serialize_only = ('id', 'name', 'sumarize', "Breakfast")
+>>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec
     id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     sumarize = db.Column(db.String(120), unique=False)

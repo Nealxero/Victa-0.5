@@ -1,5 +1,5 @@
 const API_URL =
-  "http://192.168.22.122:3001/api/";
+  "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/";
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {

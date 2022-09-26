@@ -23,12 +23,9 @@ function Calendar() {
                     )
                 })}
 
-
-
-
-
-        </Container>
-    )
-};
+  
+    </Container>
+  );
+}
 
 export default Calendar;
