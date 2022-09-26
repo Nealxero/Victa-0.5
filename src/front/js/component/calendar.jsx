@@ -10,7 +10,7 @@ function Calendar() {
     const plans = store.users.map((item, index) => { return item.daily_plans })
     
 
-    if (plans.length == 0) return <p>Loading</p>
+    if (!plans) return <p>Loading</p>
     return (
         <Container>
             {

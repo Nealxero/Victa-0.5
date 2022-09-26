@@ -176,7 +176,18 @@ def get_meal_by_id(meal_id):
 
 @api.route('/user/<user_id>/favorites', methods=['GET'])
 def get_user_favorites(user_id):
-    user = User.query.filter_by(id=user_id).one_or_none()
+    
+    #try:
+    favs = Meal.query.filter_by(favorite=True).all()
+    
+    fav_list = [] 
+    for fav in favs:
+        fav_list.append(fav.to_dict())
+    
+    return jsonify(fav_list), 200
+    
+    #except Exception as error:
+    #    return jsonify("This user doesn't have favorites", print(error)), 400
 
     try:
         user_final = ({
@@ -185,7 +196,7 @@ def get_user_favorites(user_id):
             'favorites': []
         })
 
-        for fav in user.favorites:
+        for fav in user.meals:
             user_final['favorites'].append({
                 'id': fav.id,
                 'name': fav.name,
@@ -197,6 +208,15 @@ def get_user_favorites(user_id):
         return jsonify(user_final), 200
     except Exception as error:
         return jsonify("This user doesn't have favorites", print(error)), 400
+
+@api.route('/user/<user_id>/favorites/<title>', methods=['POST'])
+def add_favorites(user_id, title):
+    meal = Meal(name=title, user_id=user_id, favorite=True)
+    db.session.add(meal)
+    db.session.commit()
+    
+    return jsonify("Succesfully added"), 200
+
 
 # --------------   User's Daily plan --------------------------------
 

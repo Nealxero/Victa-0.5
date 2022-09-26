@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token : null,
       users: [],
       meals: [],
+      favorites: []
       
     },
     actions: {
@@ -29,6 +30,24 @@ const getState = ({ getStore, getActions, setStore }) => {
             
           });
       },
+      loadFavs: () => {
+        const store = getStore();
+        const userToken = localStorage.getItem('user_id');
+        
+        fetch(`${API_URL}user/${userToken}/favorites`)
+          .then(data => data.json())
+          .then(async (data) => {
+            
+            let newArray = store['favorites'];
+          
+
+            newArray = newArray.concat(data);
+            console.log(data);
+            setStore({ favorites: newArray });
+            
+          });
+      },
+      
 
       loadMeals: () => {
         const store = getStore();
@@ -81,22 +100,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const responseJson = await response.json();
 				setStore(responseJson);
 			},
-
-      updateFavoriteList: (newElement) => {
-        const store = getStore();
-        const newFavorites = [...store.users.favorites, newElement];
-        setStore({ favorites: newFavorites });
-      },
-
-      deleteFavorite: (data) => {
-        const store = getStore();
-
-        let newFavorites = store.users.favorites.filter((item, i) => i != data);
-        setStore({ favorites: newFavorites });
-      },
       loadSomeData: () => {
 				getActions().loadUsers()
         getActions().loadMeals()
+        getActions().loadFavs()
 				
 			}
     },
