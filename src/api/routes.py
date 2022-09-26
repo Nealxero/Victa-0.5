@@ -60,7 +60,6 @@ DAYS_OF_THE_WEEK = {
 
 @api.route('/signup', methods=['POST'])
 def create_new_user():
-<<<<<<< HEAD
     try: 
     
         user_email = request.json.get('user-email', None)
@@ -68,22 +67,6 @@ def create_new_user():
         user_username = request.json.get('user-name', None)
         user = User(password=user_password, email=user_email, username=user_username)
         db.session.add(user)
-=======
-    user_email = request.json.get('user-email', None)
-    user_password = request.json.get('user-password', None)
-    user_username = request.json.get('user-name', None)
-    user = User.signup(password=user_password, email=user_email, username=user_username)
-    db.session.add(user)
-    db.session.commit()
-    for days in DAYS_OF_THE_WEEK:
-        daily_plan_name = days
-        first_block = []
-        second_block = []
-        third_block = []
-        user_id = user.id
-        daily_meal = Meal.create(name=daily_plan_name, first_block=first_block, second_block=second_block, third_block=third_block, user_id=user_i)
-        db.session.add(daily_meal)
->>>>>>> c8254be8f9a257d6777cae1f5019bcc51d7aeb49
         db.session.commit()
         for day in DAYS_OF_THE_WEEK:
             plan = DailyPlan(name=day, user_id=user.id)
