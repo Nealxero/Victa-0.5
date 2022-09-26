@@ -12,7 +12,7 @@ MAX_DAILY_PLANS = 7
 
 
 class User(db.Model, SerializerMixin):
-    serialize_only = ('id', 'username', 'email', 'daily_plans.id')
+    serialize_only = ('id', 'username', 'email', 'daily_plans.id', 'daily_plans.name')
     id = db.Column(db.Integer, unique=True, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -83,7 +83,7 @@ TYPES = [
 ]
 
 class DailyPlan(db.Model, SerializerMixin):
-    serialize_only = ('id', 'first_block.id', 'first_block.name', 'second_block.id', 'second_block.name', 'third_block.id', 'third_block.name')
+    serialize_only = ('id', 'name', 'first_block.id', 'first_block.name', 'second_block.id', 'second_block.name', 'third_block.id', 'third_block.name')
     id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String(120), nullable=True)
     first_block = db.relationship(

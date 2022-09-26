@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/searchbar.css";
-import {FaSearch, FaRegTimesCircle} from 'react-icons/fa';
+import { FaSearch, BiTrash, FaRegTimesCircle } from 'react-icons/fa';
 import Sidebar from "../component/sidebar.jsx";
 import { Card } from "react-bootstrap";
 
@@ -58,40 +58,42 @@ function SearchBar({ placeholder, data }) {
 
   return (
     <Sidebar>
-    <div className="search">
-    <div className="searchInputs">
-        <input
-          class="form-control input-lg"
-          type="text"
-          placeholder={placeholder}
-          value={wordEntered}
-          onChange={handleFilter}
-        />
-        <div className="searchIcon">
-          {filteredData.length === 0 ? (
-            <button disabled={loading} onClick={handleFetchData}>
-              <FaSearch />
-            </button>
-          ) : (
-            <FaRegTimesCircle id="clearBtn" onClick={clearInput} />
-          )}
+      <div className="search">
+        <div className="searchInputs">
+          <input
+            className="form-control input-lg"
+            type="text"
+            placeholder={placeholder}
+            value={wordEntered}
+            onChange={handleFilter}
+          />
+          <div className="searchIcon">
+            {filteredData.length === 0 ? (
+              <button disabled={loading} onClick={handleFetchData}>
+                <FaSearch />
+              </button>
+            ) : (
+              <FaRegTimesCircle id="clearBtn" onClick={clearInput} />
+            )}
+          </div>
         </div>
-      </div>
-      {filteredData.length != 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {filteredData.slice(0, 15).map((value, key) => {
-            return (
-              <Card>
-                <Card.Img src={value?.image} />
-                <a className="dataItem">
+        {filteredData.length != 0 && (
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {filteredData.slice(0, 15).map((value, key) => {
+              return (
+                <Card>
+                  <Card.Img src={value?.image} />
+
                   <p>{value.title} </p>
-                </a>
-              </Card>
-            );
-          })}
-        </div>
-      )}
-    </div>
+                  
+                  
+
+                </Card>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </Sidebar>
   );
 }

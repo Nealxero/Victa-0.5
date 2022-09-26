@@ -1,22 +1,39 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import '../../styles/calendar.css';
 import Stack from 'react-bootstrap/Stack';
-import DailyMeal from './meal-calendar.jsx';
-import DayOfWeek from './day-week.jsx';
+import { DailyMeal } from './meal-calendar.jsx';
+import { DayOfWeek } from './day-week.jsx';
+import PropTypes from "prop-types";
 
-function DailyPlan () {
-    return(
-            <Col>
+export const DailyPlan = props => {
+
+
+    if (props.plans.length == 0) { return <p>Loading</p> }
+    
+    
+    console.log(props.plans.id)
+    // {props.plans.map((block,index) => { return <p></p>})}
+    return (
+        <Col>
             <Stack gap={4}>
-                <DayOfWeek/>
-                <DailyMeal/>
-                <DailyMeal/>
-                <DailyMeal/>
+                <DayOfWeek name={props.plans.name}/>
+
+
+                < DailyMeal name={props.plans.name} type="Breakfast" block={props.plans.first_block}/>
+                < DailyMeal name={props.plans.name} type="Lunch" block={props.plans.second_block}/>
+                < DailyMeal name={props.plans.name} type="Dinner" block={props.plans.third_block}/>
+
+
+
+
             </Stack>
-            </Col>
-         
+        </Col>
+
     )
 };
 
-export default DailyPlan;
+
+DailyPlan.propTypes = {
+    match: PropTypes.object
+};

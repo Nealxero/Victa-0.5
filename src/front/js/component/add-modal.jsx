@@ -20,21 +20,21 @@ export function AddModal() {
         </Modal.Header>
         <Modal.Body>
           <p>Day <Form.Select size="sm">
-        <option>Select Option</option>
-        <option>Monday</option>
-        <option>Tuesday</option>
-        <option>Wednesday</option>
-        <option>Thursday</option>
-        <option>Friday</option>
-        <option>Saturday</option>
-        <option>Sunday</option>
-      </Form.Select></p>
+            <option>Select Option</option>
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+            <option>Sunday</option>
+          </Form.Select></p>
           <p>Meal<Form.Select size="sm">
-        <option>Select Option</option>
-        <option>Breakfast</option>
-        <option>Lunch</option>
-        <option>Dinner</option>
-      </Form.Select></p>
+            <option>Select Option</option>
+            <option>Breakfast</option>
+            <option>Lunch</option>
+            <option>Dinner</option>
+          </Form.Select></p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>

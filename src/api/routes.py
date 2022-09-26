@@ -63,12 +63,13 @@ DAYS_OF_THE_WEEK = {
 
 @api.route('/signup', methods=['POST'])
 def create_new_user():
-    try: 
-    
+    try:
+
         user_email = request.json.get('user-email', None)
         user_password = request.json.get('user-password', None)
         user_username = request.json.get('user-name', None)
-        user = User(password=user_password, email=user_email, username=user_username)
+        user = User(password=user_password,
+                    email=user_email, username=user_username)
         db.session.add(user)
         db.session.commit()
         for day in DAYS_OF_THE_WEEK:
@@ -78,12 +79,11 @@ def create_new_user():
 
         access_token = create_access_token(identity=user.email)
 
-        return jsonify({ "token": access_token, "user_id": user.id, "message":"User created succesfully!"}), 201
-    
+        return jsonify({"token": access_token, "user_id": user.id, "message": "User created succesfully!"}), 201
 
     except Exception as error:
 
-        return jsonify({"message":"Something went wrong, Try again!"})
+        return jsonify({"message": "Something went wrong, Try again!"})
 
 
 @api.route('/login', methods=['POST'])
@@ -154,6 +154,7 @@ def meal_list():
     response_body_meal = list(map(lambda s: s.to_dict(), meal))
     return jsonify(response_body_meal), 200
 
+
 @api.route('/meals/<meal_id>', methods=['GET'])
 def get_meal_by_id(meal_id):
     meal = Meal.query.filter_by(id=meal_id).one_or_none()
@@ -209,6 +210,35 @@ def get_user_daily_plan(user_id):
         return jsonify("This user doesn't have daily meals", print(error)), 400
 
 
+
+
+@api.route('/meals/<meal_id>/delete/<plan_id>', methods=["GET", "PUT"])
+def delete_meal_in_daily_plan(meal_id, plan_id):
+
+    plan = DailyPlan.query.filter_by(id=plan_id).one_or_none().to_dict()
+
+    
+    final_plan2 = {
+        'first_block': []
+    }
+    for meal in plan['first_block']:
+        if int(meal['id']) == int(meal_id):
+            print("deleting")
+        else:
+            final_plan2['first_block'].append(
+                {
+                    'name':meal['name'],
+                    'id':meal['id'],
+                }
+            )
+
+    plan = final_plan2
+    db.session.commit()
+    print(final_plan2, plan)
+
+    return jsonify("yes"), 200
+
+
 @api.route('/user/account_email', methods=['PUT'])
 @jwt_required()
 def user_update_email():
@@ -221,7 +251,6 @@ def user_update_email():
     db.session.commit()
     return jsonify(user=user.to_dict()), 200
 
-
     # try:
     #     user = User.query.get(id)
     #     if not user:
@@ -232,6 +261,7 @@ def user_update_email():
     #     return jsonify(user.serialize()), 200
     # except Exception as error:
     #     return jsonify("This user doesn't exist", print(error)), 400 ###
+
 
 @api.route('/user/account_password', methods=['PUT'])
 @jwt_required()
@@ -254,7 +284,3 @@ def user_update_password():
     #     return jsonify(user.serialize()), 200
     # except Exception as error:
     #     return jsonify("This user doesn't exist", print(error)), 400 ###
-
-
-
-
