@@ -214,11 +214,12 @@ def get_user_daily_plan(user_id):
 def user_update_email():
     identity = get_jwt_identity()
     user_email = request.json.get('user-email', None)
-    user = User.query.filter_by(email=user_email).one_or_none()
+    new_email = request.json.get('new-email', None)
+    user = User.query.filter_by(email=identity).one_or_none()
     user.email = new_email
 
-    db.session.update(user.email)
     db.session.commit()
+    
     return jsonify(user=user.to_dict()), 200
 
 
@@ -241,8 +242,8 @@ def user_update_password():
     user = User.query.filter_by(password=user_password).one_or_none()
     user.password = new_password
 
-    db.session.update(user.password)
     db.session.commit()
+    
     return jsonify(user=user.to_dict()), 200
     # try:
     #     user = User.query.get(id)

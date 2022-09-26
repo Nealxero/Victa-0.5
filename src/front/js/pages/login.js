@@ -39,7 +39,7 @@ export const Login = () => {
         alert("Login in successfull");
         localStorage.setItem("jwt-token", res.token);
         console.log(res);
-        localStorage.setItem("user_id", res.user_id);
+        //localStorage.setItem("user_id", res.user_id);
         navigate("/account");
       })
       .catch((error) => console.log("Something went wrong", error));

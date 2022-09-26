@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../../styles/searchbar.css";
 import {FaSearch, FaRegTimesCircle} from 'react-icons/fa';
 import Sidebar from "../component/sidebar.jsx";
-import { Card } from "react-bootstrap";
-
+import { Card, Button } from "react-bootstrap";
+import { CardGroup } from "react-bootstrap";
 
 
 const fetchFoodData = async (key) => {
@@ -81,12 +81,15 @@ function SearchBar({ placeholder, data }) {
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {filteredData.slice(0, 15).map((value, key) => {
             return (
-              <Card>
+              <CardGroup id="searchCards">
+              <Card >
                 <Card.Img src={value?.image} />
                 <a className="dataItem">
                   <p>{value.title} </p>
                 </a>
+                <Button> add to favorite </Button>
               </Card>
+              </CardGroup>
             );
           })}
         </div>
