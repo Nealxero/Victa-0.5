@@ -4,7 +4,13 @@ import "../../styles/forgotpass.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+
 export const ForgotPassword = () => {
+  let  navigate = useNavigate()
+
+  const onclickForgot = () =>{
+    navigate("/reset")
+  }
   return (
     <div id="card2">
       <div id="card-content">
@@ -23,8 +29,7 @@ export const ForgotPassword = () => {
             required
           />
           <div className="form-border"></div>
-
-          <input id="submit-btn2" type="submit" name="submit" value="SEND" />
+          <button id="submit-btn2" type="submit" onClick={onclickForgot}> SEND </button>
           <p id="signup2">
             <Link to="/signup">Cancel</Link>
           </p>

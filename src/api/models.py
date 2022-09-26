@@ -28,7 +28,6 @@ class User(db.Model, SerializerMixin):
     def __repr__(self):
         return f'<User {self.email}>'
 
-    
 
     @classmethod
     def signup(cls, email, password, username):

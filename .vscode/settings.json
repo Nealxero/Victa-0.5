@@ -1,5 +1,8 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "githubPullRequests.ignoredPullRequestBranches": ["main"]
+  "githubPullRequests.ignoredPullRequestBranches": ["main"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  }
 }
