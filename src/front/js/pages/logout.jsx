@@ -8,11 +8,11 @@ const Logout =  () => {
   const handleShow = () => setShow(true);
   var navigate = useNavigate()
   
-  const LogoutClick = (e) => {
-   
-    (localStorage.removeItem("token"));
-  }
+  if (localStorage.getItem("jwt-token") == null || localStorage.getItem("jwt-token") == "undefined" ){
 return (
+    navigate("/login")
+  );}
+  else {return (
     <div>
       <div className="pages">
         <h2>Log out</h2>
@@ -20,12 +20,12 @@ return (
       
       <LogoutModal
         show={show}
-        loginOutClick={LogoutClick}
         handleClose={handleClose}
-        
       />
     </div>
-  );
+  )}
+
+  
 };
 
 

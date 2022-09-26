@@ -34,13 +34,15 @@ export const SignUp = () => {
 
   return (
     <div id="container">
-      <div id="image">
+      <div className="" id="image">
         <img
           id="imgStyle"
+          className="img-fluid rounded-start"
           src="https://us.123rf.com/450wm/butenkow/butenkow1611/butenkow161100362/67310324-plantilla-de-dise%C3%B1o-de-logotipo-para-la-dieta-ilustraci%C3%B3n-de-vector-de-icono.jpg?ver=6"
         />
       </div>
       <div id="card">
+        
         <div id="card-content">
           <div id="card-title">
             <h2>SIGN UP</h2>

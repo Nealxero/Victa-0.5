@@ -39,10 +39,13 @@ const Account = () => {
       );
       const confirmPass = await updatePass.json();
       if (updatePass.status == 200) {
-        alert("all working fine for password");
+        alert("Password changed Succesfully");
       }
     }
+    else {
+      alert("The values are not the same, try again")
   };
+  }
 
   const updateClickMail = async (e) => {
     e.preventDefault();
@@ -64,10 +67,10 @@ const Account = () => {
 
       const confirmMail = await updateMail.json();
       if (updateMail.status == 200) {
-        alert("all working fine for mail");
+        alert("Email changed Succesfully");
       }
     } else {
-      alert("Los valores no son iguales");
+      alert("The values are not the same, try again");
     }
   };
 

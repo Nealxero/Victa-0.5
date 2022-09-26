@@ -12,15 +12,16 @@ export function LogoutModal() {
   let navigate = useNavigate()
 
   const LogoutClick = (e) => {
-    (localStorage.removeItem("jwt-token"));
-    (localStorage.removeItem("user_id"));
+    localStorage.clear();
+    navigate("/login")
 
   }
-  useEffect(() => {
+
+   useEffect(() => {
     if (!localStorage.getItem("jwt-token")) {
       navigate("/");
-    }
-  }, [])
+    } 
+  }, [])  
 
   return (
     <>
@@ -39,6 +40,7 @@ export function LogoutModal() {
           <Button
             variant="danger"
             onClick={function () {
+              window.location.reload();
               LogoutClick();
               handleClose();
             }}
