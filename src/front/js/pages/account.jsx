@@ -18,7 +18,7 @@ const Account = () => {
   const [checkPassword, setCheckPassword] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [updateEmail, setUpdateEmail] = useState("");
-  const [id] = useState(localStorage.getItem("user_id"));
+  const [id] = useState(localStorage.getItem("user_id"));;
 
   const updateClickPass = async (e) => {
     e.preventDefault();
@@ -73,6 +73,8 @@ const Account = () => {
       alert("The values are not the same, try again");
     }
   };
+
+  console.log({ checkPassword, updatePassword });
 
   console.log({ checkPassword, updatePassword });
 
@@ -146,10 +148,11 @@ const Account = () => {
                     Please confirm your new Password
                   </Form.Label>
                   <InputGroup
+                   
                     classname="mb-2"
-                    id="basic-url4"
-                    name={checkPassword}
-                    onChange={(e) => setCheckPassword(e.target.value)}
+                      id="basic-url4"
+                      name={checkPassword}
+                      onChange={(e) => setCheckPassword(e.target.value)}
                   >
                     <Form.Control
                       placeholder="Repeat Password"

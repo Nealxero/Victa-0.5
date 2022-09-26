@@ -69,6 +69,7 @@ def create_new_user():
         user_password = request.json.get('user-password', None)
         user_username = request.json.get('user-name', None)
         user = User(password=user_password,
+                   
                     email=user_email, username=user_username)
         db.session.add(user)
         db.session.commit()
@@ -83,7 +84,7 @@ def create_new_user():
 
     except Exception as error:
 
-        return jsonify({"message": "Something went wrong, Try again!"})
+        return jsonify({"message":  "Something went wrong, Try again!"})
 
 
 @api.route('/login', methods=['POST'])
@@ -155,6 +156,7 @@ def meal_list():
     return jsonify(response_body_meal), 200
 
 
+
 @api.route('/meals/<meal_id>', methods=['GET'])
 def get_meal_by_id(meal_id):
     meal = Meal.query.filter_by(id=meal_id).one_or_none()
@@ -176,7 +178,18 @@ def get_meal_by_id(meal_id):
 
 @api.route('/user/<user_id>/favorites', methods=['GET'])
 def get_user_favorites(user_id):
-    user = User.query.filter_by(id=user_id).one_or_none()
+    
+    #try:
+    favs = Meal.query.filter_by(favorite=True).all()
+    
+    fav_list = [] 
+    for fav in favs:
+        fav_list.append(fav.to_dict())
+    
+    return jsonify(fav_list), 200
+    
+    #except Exception as error:
+    #    return jsonify("This user doesn't have favorites", print(error)), 400
 
     try:
         user_final = ({
@@ -185,7 +198,7 @@ def get_user_favorites(user_id):
             'favorites': []
         })
 
-        for fav in user.favorites:
+        for fav in user.meals:
             user_final['favorites'].append({
                 'id': fav.id,
                 'name': fav.name,
@@ -197,6 +210,15 @@ def get_user_favorites(user_id):
         return jsonify(user_final), 200
     except Exception as error:
         return jsonify("This user doesn't have favorites", print(error)), 400
+
+@api.route('/user/<user_id>/favorites/<title>', methods=['POST'])
+def add_favorites(user_id, title):
+    meal = Meal(name=title, user_id=user_id, favorite=True)
+    db.session.add(meal)
+    db.session.commit()
+    
+    return jsonify("Succesfully added"), 200
+
 
 # --------------   User's Daily plan --------------------------------
 
@@ -262,6 +284,9 @@ def user_update_email():
 
     user = User.query.filter_by(email=identity).one_or_none()
 
+
+    user = User.query.filter_by(email=identity).one_or_none()
+
     user_email = request.json.get('user-email', None)
     user.email = user_email
 
@@ -281,12 +306,20 @@ def user_update_email():
     #     return jsonify("This user doesn't exist", print(error)), 400 ###
 
 
+
 @api.route('/user/account_password', methods=['PUT'])
 @jwt_required()
 def user_update_password():
 
     # Recuperamos el usuario logeado
+
+    # Recuperamos el usuario logeado
     identity = get_jwt_identity()
+
+    # Hacemos la query en la db con el usuario recuperado del JWT
+    user = User.query.filter_by(email=identity).one_or_none()
+
+    # Conseguimos la nueva contraseña de nuestro request
 
     # Hacemos la query en la db con el usuario recuperado del JWT
     user = User.query.filter_by(email=identity).one_or_none()
@@ -300,6 +333,7 @@ def user_update_password():
 
     # Guardamos los cambios en la db para hacerlos permanentes
     db.session.commit()
+
 
     return jsonify(user=user.to_dict()), 200
     # try:

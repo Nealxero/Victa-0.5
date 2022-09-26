@@ -22,7 +22,7 @@ class User(db.Model, SerializerMixin):
     # Relationships
     daily_plans = db.relationship(
         'DailyPlan', backref='User')
-    favorites = db.relationship('Meal', backref=backref(
+    meals = db.relationship('Meal', backref=backref(
         'User', uselist=False), lazy='dynamic')
 
     def __repr__(self):
@@ -118,12 +118,13 @@ def plans_per_user_check(target, value, oldvalue, initiator):
 
 
 class Meal(db.Model, SerializerMixin):
-    # serialize_only = ('id', 'name', 'sumarize', "Breakfast")
+    serialize_only = ('id', 'name', 'sumarize', 'favorite')
     id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
-    sumarize = db.Column(db.String(120), unique=False, nullable=False)
-    nutrients = db.Column(db.String(80), unique=False, nullable=False)
-    ingredients = db.Column(db.String(80), unique=False, nullable=False)
+    sumarize = db.Column(db.String(120), unique=False)
+    nutrients = db.Column(db.String(80), unique=False)
+    ingredients = db.Column(db.String(80), unique=False)
+    favorite = db.Column(db.Boolean, default=False)
     # Relationships
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     daily_plan_id = db.Column(db.Integer, db.ForeignKey('daily_plan.id'))
@@ -132,12 +133,15 @@ class Meal(db.Model, SerializerMixin):
         return f'Meal( id : "{str(self.id)}",  name : "{str(self.name)}", sumarize : "{str(self.sumarize)}",  nutrients : "{str(self.nutrients)}",  ingredients : "{str(self.ingredients)}")'
 
     @classmethod
-    def create(cls, name, first_block, second_block, third_block):
+    def create(cls, name, sumarize, nutrients, ingredients, favorite):
         instance = cls(
             name=name,
-            first_block=first_block,
-            second_block=second_block,
-            third_block=third_block
+            sumarize=sumarize,
+            nutrients=nutrients,
+            ingredients=ingredients,
+            favorite=favorite,
+            user_id=user_id,
+            daily_plan_id=daily_plan_id,
         )
         if isinstance(instance, cls):
             return instance

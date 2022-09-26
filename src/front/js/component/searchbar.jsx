@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "../../styles/searchbar.css";
-import { FaSearch, BiTrash, FaRegTimesCircle } from 'react-icons/fa';
+import { FaSearch, FaHeart, FaRegTimesCircle } from 'react-icons/fa';
 import Sidebar from "../component/sidebar.jsx";
-import { Card, Button } from "react-bootstrap";
-import { CardGroup } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+
 
 
 const fetchFoodData = async (key) => {
@@ -24,14 +25,34 @@ const fetchFoodData = async (key) => {
     });
 };
 
+const addFavorite = (title) => {
+  const userToken = localStorage.getItem('user_id');
+  const url = `https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/user/${userToken}/favorites/${title}`
+
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((fetchResponse) => {
+      return fetchResponse.json();
+    })
+    .then((jsonResponse) => jsonResponse)
+    .catch((error) => {
+      console.log(error);
+    });
+
+}
+
 function SearchBar({ placeholder, data }) {
   const [loading, setLoading] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
-  const [wordEntered, setWordEntered] = useState("");
+  const [tered, settered] = useState("");
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
-    setWordEntered(searchWord);
+    settered(searchWord);
     const newFilter = data.filter((value) => {
       return value.title.toLowerCase().includes(searchWord.toLowerCase());
     });
@@ -45,12 +66,12 @@ function SearchBar({ placeholder, data }) {
 
   const clearInput = () => {
     setFilteredData([]);
-    setWordEntered("");
+    settered("");
   };
 
   const handleFetchData = async () => {
     setLoading(true);
-    const data = await fetchFoodData(wordEntered);
+    const data = await fetchFoodData(tered);
     setFilteredData(data?.results);
     setLoading(false);
   };
@@ -58,43 +79,44 @@ function SearchBar({ placeholder, data }) {
 
   return (
     <Sidebar>
-    <div className="search">
-    <div className="searchInputs">
-        <input
-          class="form-control input-lg"
-          type="text"
-          placeholder={placeholder}
-          value={wordEntered}
-          onChange={handleFilter}
-        />
-        <div className="searchIcon">
-          {filteredData.length === 0 ? (
-            <button disabled={loading} onClick={handleFetchData}>
-              <FaSearch />
-            </button>
-          ) : (
-            <FaRegTimesCircle id="clearBtn" onClick={clearInput} />
-          )}
+      <div className="search">
+        <div className="searchInputs">
+          <input
+            className="form-control input-lg"
+            type="text"
+            placeholder={placeholder}
+            value={tered}
+            onChange={handleFilter}
+          />
+          <div className="searchIcon">
+            {filteredData.length === 0 ? (
+              <button disabled={loading} onClick={handleFetchData}>
+                <FaSearch />
+              </button>
+            ) : (
+              <FaRegTimesCircle id="clearBtn" onClick={clearInput} />
+            )}
+          </div>
         </div>
-      </div>
-      {filteredData.length != 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {filteredData.slice(0, 15).map((value, key) => {
-            return (
-              <CardGroup id="searchCards">
-              <Card >
-                <Card.Img src={value?.image} />
-                <a className="dataItem">
+        {filteredData.length != 0 && (
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {filteredData.slice(0, 15).map((value, key) => {
+              console.log(value)
+              return (
+                <Card>
+                  <Card.Img src={value?.image} />
+
                   <p>{value.title} </p>
-                </a>
-                <Button> add to favorite </Button>
-              </Card>
-              </CardGroup>
-            );
-          })}
-        </div>
-      )}
-    </div>
+                  <Button onClick={addFavorite(value.title)}><FaHeart /></Button>
+                  
+                  
+
+                </Card>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </Sidebar>
   );
 }
