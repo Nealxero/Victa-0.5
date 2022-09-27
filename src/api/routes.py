@@ -230,19 +230,6 @@ def get_user_daily_plan(user_id):
         return jsonify("This user doesn't have daily meals", print(error)), 400
 
 
-<<<<<<< HEAD
-
-
-@api.route('/meals/<meal_id>/delete/<plan_id>', methods=["GET", "PUT"])
-def delete_meal_in_daily_plan(meal_id, plan_id):
-
-    plan = DailyPlan.query.filter_by(id=plan_id).one_or_none().to_dict()
-
-    
-    final_plan2 = {
-        'first_block': []
-    }
-=======
 @api.route('/meals/<meal_id>/delete/<plan_id>/<plan_block>', methods=["PUT"])
 def delete_meal_in_daily_plan(meal_id, plan_id, plan_block):
 
@@ -271,32 +258,21 @@ def delete_meal_in_daily_plan(meal_id, plan_id, plan_block):
 '''
       block_to_update = plan[plan_block]
 
->>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec
     for meal in plan['first_block']:
         if int(meal['id']) == int(meal_id):
             print("deleting")
         else:
             final_plan2['first_block'].append(
                 {
-<<<<<<< HEAD
-                    'name':meal['name'],
-                    'id':meal['id'],
-=======
                     'name': meal['name'],
                     'id': meal['id'],
->>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec
                 }
             )
 
     plan = final_plan2
     db.session.commit()
     print(final_plan2, plan)
-<<<<<<< HEAD
-
-    return jsonify("yes"), 200
-=======
     '''
->>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec
 
 
 @api.route('/user/account_email', methods=['PUT'])
@@ -311,11 +287,8 @@ def user_update_email():
 
     db.session.commit()
 
-<<<<<<< HEAD
-=======
     return jsonify(user=user.to_dict()), 200
 
->>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec
     # try:
     #     user = User.query.get(id)
     #     if not user:

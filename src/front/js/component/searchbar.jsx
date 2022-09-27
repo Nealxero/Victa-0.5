@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import "../../styles/searchbar.css";
-<<<<<<< HEAD
 import { FaSearch, FaHeart, FaRegTimesCircle } from 'react-icons/fa';
 import Sidebar from "../component/sidebar.jsx";
 import { Card } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 
-=======
-import { FaSearch, BiTrash, FaRegTimesCircle } from 'react-icons/fa';
-import Sidebar from "../component/sidebar.jsx";
-import { Card, Button } from "react-bootstrap";
-import { CardGroup } from "react-bootstrap";
->>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec
 
 
 const fetchFoodData = async (key) => {
@@ -105,7 +98,6 @@ function SearchBar({ placeholder, data }) {
             )}
           </div>
         </div>
-<<<<<<< HEAD
         {filteredData.length != 0 && (
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {filteredData.slice(0, 15).map((value, key) => {
@@ -125,27 +117,6 @@ function SearchBar({ placeholder, data }) {
           </div>
         )}
       </div>
-=======
-      </div>
-      {filteredData.length != 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {filteredData.slice(0, 15).map((value, key) => {
-            return (
-              <CardGroup id="searchCards">
-              <Card >
-                <Card.Img src={value?.image} />
-                <a className="dataItem">
-                  <p>{value.title} </p>
-                </a>
-                <Button> add to favorite </Button>
-              </Card>
-              </CardGroup>
-            );
-          })}
-        </div>
-      )}
-    </div>
->>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec
     </Sidebar>
   );
 }

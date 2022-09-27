@@ -12,6 +12,7 @@ export function LogoutModal() {
   let navigate = useNavigate()
 
   const LogoutClick = (e) => {
+<<<<<<< HEAD
     (localStorage.removeItem("jwt-token"));
     (localStorage.removeItem("user_id"));
 
@@ -21,6 +22,18 @@ export function LogoutModal() {
       navigate("/");
     }
   }, [])
+=======
+    localStorage.clear();
+    navigate("/login")
+
+  }
+
+   useEffect(() => {
+    if (!localStorage.getItem("jwt-token")) {
+      navigate("/");
+    } 
+  }, [])  
+>>>>>>> Nealxero-main
 
   return (
     <>
@@ -39,6 +52,7 @@ export function LogoutModal() {
           <Button
             variant="danger"
             onClick={function () {
+              window.location.reload();
               LogoutClick();
               handleClose();
             }}
