@@ -118,6 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ favorites: newFavorites });
         
       },
+      
       loadSomeData: () => {
 				getActions().loadUsers()
         getActions().loadMeals()
