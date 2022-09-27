@@ -1,22 +1,14 @@
-const API_URL =
-<<<<<<< HEAD
-  "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/";
-=======
-<<<<<<< HEAD
-  "http://192.168.22.122:3001/api/";
-=======
-  "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/";
->>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
->>>>>>> Nealxero-main
+const API_URL = "http://192.168.0.12:3001/api/";
+
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      token : null,
+      token: null,
       users: [],
       meals: [],
       favorites: []
-      
+
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -24,43 +16,43 @@ const getState = ({ getStore, getActions, setStore }) => {
       loadUsers: () => {
         const store = getStore();
         const userToken = localStorage.getItem('user_id');
-        
+
         fetch(`${API_URL}user/${userToken}/daily_meals`)
           .then(data => data.json())
           .then(async (data) => {
-            
+
             let newArray = store['users'];
-          
+
 
             newArray = newArray.concat(data);
-            console.log(data);
+
             setStore({ users: newArray });
-            
+
           });
       },
       loadFavs: () => {
         const store = getStore();
         const userToken = localStorage.getItem('user_id');
-        
+
         fetch(`${API_URL}user/${userToken}/favorites`)
           .then(data => data.json())
           .then(async (data) => {
-            
+
             let newArray = store['favorites'];
-          
+
 
             newArray = newArray.concat(data);
             console.log(data);
             setStore({ favorites: newArray });
-            
+
           });
       },
-      
+
 
       loadMeals: () => {
         const store = getStore();
 
-        fetch(`${API_URL}meals`, )
+        fetch(`${API_URL}meals`,)
           .then(data => data.json())
           .then(async (data) => {
             let newArray = store['meals'];
@@ -93,27 +85,53 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ [plans]: newArray });
           });
       },
+
       // this function is to prevent the view of the app if the user has no token (logged in)
-      protectedData : async () => {
-				
-				const token = sessionStorage.getItem('token');
-				const response = await fetch('https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/private', {
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + token
-					}
-				});
-				if (!response.ok) throw Error('login request failed, try again');
-				const responseJson = await response.json();
-				setStore(responseJson);
-			},
+      protectedData: async () => {
+
+        const token = sessionStorage.getItem('token');
+        const response = await fetch(`${API_URL}private`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token
+          }
+        });
+        if (!response.ok) throw Error('login request failed, try again');
+        const responseJson = await response.json();
+        setStore(responseJson);
+      },
+      deleteFavorite: (value, data) => {
+        //get the store
+        const store = getStore();
+
+        let newFavorites = store.favorites.filter((item, i) => i != data);
+        console.log(data)
+        setStore({ favorites: newFavorites });
+        const url = `http://192.168.0.12:3001/api/meal/${value.id}/delete`
+
+
+        return fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((fetchResponse) => {
+            return fetchResponse.json();
+          })
+          .then((jsonResponse) => jsonResponse)
+          .catch((error) => {
+            console.log(error);
+          });
+
+      },
       loadSomeData: () => {
-				getActions().loadUsers()
+        getActions().loadUsers()
         getActions().loadMeals()
         getActions().loadFavs()
-				
-			}
+
+      }
     },
 
   };

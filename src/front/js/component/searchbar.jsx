@@ -25,9 +25,9 @@ const fetchFoodData = async (key) => {
     });
 };
 
-const addFavorite = (title) => {
+const addFavorite = (meal_id, title) => {
   const userToken = localStorage.getItem('user_id');
-  const url = `http://192.168.22.122:3001/api/user/${userToken}/favorites/${title}`
+  const url = `http://192.168.0.12:3001/api/meal/${meal_id}/add/${title}/${userToken}`
 
   return fetch(url, {
     method: "POST",
@@ -101,13 +101,13 @@ function SearchBar({ placeholder, data }) {
         {filteredData.length != 0 && (
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {filteredData.slice(0, 15).map((value, key) => {
-              console.log(value)
+              
               return (
                 <Card>
                   <Card.Img src={value?.image} />
 
                   <p>{value.title} </p>
-                  <Button onClick={addFavorite(value.title)}><FaHeart /></Button>
+                  <Button onClick={() => addFavorite(value.id, value.title)}><FaHeart /></Button>
                   
                   
 

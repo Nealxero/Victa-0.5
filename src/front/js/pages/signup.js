@@ -15,10 +15,10 @@ export const SignUp = () => {
   const CreateUser = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      "http://192.168.22.122:3001/api/signup",
+      "http://192.168.0.12:3001/api/signup",
       {
         method: "POST",
-        body: JSON.stringify({ "user-name":username, "user-email":email, "user-password":password }),
+        body: JSON.stringify({ "user-name": username, "user-email": email, "user-password": password }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,7 +42,7 @@ export const SignUp = () => {
         />
       </div>
       <div id="card">
-        
+
         <div id="card-content">
           <div id="card-title">
             <h2>SIGN UP</h2>
