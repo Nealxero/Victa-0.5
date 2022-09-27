@@ -69,6 +69,10 @@ def create_new_user():
         user_password = request.json.get('user-password', None)
         user_username = request.json.get('user-name', None)
         user = User(password=user_password,
+<<<<<<< HEAD
+=======
+                   
+>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
                     email=user_email, username=user_username)
         db.session.add(user)
         db.session.commit()
@@ -83,7 +87,11 @@ def create_new_user():
 
     except Exception as error:
 
+<<<<<<< HEAD
         return jsonify({"message": "Something went wrong, Try again!"})
+=======
+        return jsonify({"message":  "Something went wrong, Try again!"})
+>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
 
 
 @api.route('/login', methods=['POST'])
@@ -155,6 +163,10 @@ def meal_list():
     return jsonify(response_body_meal), 200
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
 @api.route('/meals/<meal_id>', methods=['GET'])
 def get_meal_by_id(meal_id):
     meal = Meal.query.filter_by(id=meal_id).one_or_none()
@@ -230,6 +242,7 @@ def get_user_daily_plan(user_id):
         return jsonify("This user doesn't have daily meals", print(error)), 400
 
 
+<<<<<<< HEAD
 
 
 @api.route('/meals/<meal_id>/delete/<plan_id>', methods=["GET", "PUT"])
@@ -241,36 +254,83 @@ def delete_meal_in_daily_plan(meal_id, plan_id):
     final_plan2 = {
         'first_block': []
     }
+=======
+@api.route('/meals/<meal_id>/delete/<plan_id>/<plan_block>', methods=["PUT"])
+def delete_meal_in_daily_plan(meal_id, plan_id, plan_block):
+
+    plan = DailyPlan.query.filter_by(id=plan_id).one_or_none()
+
+    aux_dict = {}
+
+    plan_dict = plan.to_dict()
+    block_to_update = plan_dict[plan_block]
+
+    aux_dict = {
+        "id":  block_to_update[0]["id"],
+        "name": "Edgar"
+    }
+
+    # Lo guardamos en la db
+    plan_dict[plan_block][0] = aux_dict
+
+    plan.first_block[0].name = "Edgar"
+
+    db.session.commit()
+
+    return jsonify(plan=plan.to_dict()), 200
+
+
+'''
+      block_to_update = plan[plan_block]
+
+>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
     for meal in plan['first_block']:
         if int(meal['id']) == int(meal_id):
             print("deleting")
         else:
             final_plan2['first_block'].append(
                 {
+<<<<<<< HEAD
                     'name':meal['name'],
                     'id':meal['id'],
+=======
+                    'name': meal['name'],
+                    'id': meal['id'],
+>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
                 }
             )
 
     plan = final_plan2
     db.session.commit()
     print(final_plan2, plan)
+<<<<<<< HEAD
 
     return jsonify("yes"), 200
+=======
+    '''
+>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
 
 
 @api.route('/user/account_email', methods=['PUT'])
 @jwt_required()
 def user_update_email():
     identity = get_jwt_identity()
-    user_email = request.json.get('user-email', None)
-    user = User.query.filter_by(email=user_email).one_or_none()
-    user.email = new_email
 
-    db.session.update(user.email)
+    user = User.query.filter_by(email=identity).one_or_none()
+
+
+    user = User.query.filter_by(email=identity).one_or_none()
+
+    user_email = request.json.get('user-email', None)
+    user.email = user_email
+
     db.session.commit()
+
+<<<<<<< HEAD
+=======
     return jsonify(user=user.to_dict()), 200
 
+>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
     # try:
     #     user = User.query.get(id)
     #     if not user:
@@ -283,16 +343,38 @@ def user_update_email():
     #     return jsonify("This user doesn't exist", print(error)), 400 ###
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
 @api.route('/user/account_password', methods=['PUT'])
 @jwt_required()
 def user_update_password():
-    identity = get_jwt_identity()
-    user_password = request.json.get('user-password', None)
-    user = User.query.filter_by(password=user_password).one_or_none()
-    user.password = new_password
 
-    db.session.update(user.password)
+    # Recuperamos el usuario logeado
+
+    # Recuperamos el usuario logeado
+    identity = get_jwt_identity()
+
+    # Hacemos la query en la db con el usuario recuperado del JWT
+    user = User.query.filter_by(email=identity).one_or_none()
+
+    # Conseguimos la nueva contraseña de nuestro request
+
+    # Hacemos la query en la db con el usuario recuperado del JWT
+    user = User.query.filter_by(email=identity).one_or_none()
+
+    # Conseguimos la nueva contraseña de nuestro request
+    user_password = request.json.get('user-password', None)
+    print(user_password)
+
+    # Actualizamos nuestro user de la db con la nueva contraseña
+    user.password = user_password
+
+    # Guardamos los cambios en la db para hacerlos permanentes
     db.session.commit()
+
+
     return jsonify(user=user.to_dict()), 200
     # try:
     #     user = User.query.get(id)

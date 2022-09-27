@@ -12,7 +12,11 @@ MAX_DAILY_PLANS = 7
 
 
 class User(db.Model, SerializerMixin):
+<<<<<<< HEAD
     serialize_only = ('id', 'username', 'email',
+=======
+    serialize_only = ('id', 'username', 'email', "password",
+>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd
                       'daily_plans.id', 'daily_plans.name')
     id = db.Column(db.Integer, unique=True, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
