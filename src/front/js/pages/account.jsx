@@ -18,7 +18,11 @@ const Account = () => {
   const [checkPassword, setCheckPassword] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
   const [updateEmail, setUpdateEmail] = useState("");
+<<<<<<< HEAD
+  const [id] = useState(localStorage.getItem("user_id"));
+=======
   const [id] = useState(localStorage.getItem("user_id"));;
+>>>>>>> Nealxero-main
 
   const updateClickPass = async (e) => {
     e.preventDefault();
@@ -39,13 +43,20 @@ const Account = () => {
       );
       const confirmPass = await updatePass.json();
       if (updatePass.status == 200) {
+<<<<<<< HEAD
+        alert("all working fine for password");
+=======
         alert("Password changed Succesfully");
+>>>>>>> Nealxero-main
       }
     }
     else {
       alert("The values are not the same, try again")
   };
+<<<<<<< HEAD
+=======
   }
+>>>>>>> Nealxero-main
 
   const updateClickMail = async (e) => {
     e.preventDefault();
@@ -76,8 +87,11 @@ const Account = () => {
 
   console.log({ checkPassword, updatePassword });
 
+<<<<<<< HEAD
+=======
   console.log({ checkPassword, updatePassword });
 
+>>>>>>> Nealxero-main
   return (
     <Sidebar>
       <div className="pages">
@@ -148,11 +162,18 @@ const Account = () => {
                     Please confirm your new Password
                   </Form.Label>
                   <InputGroup
+<<<<<<< HEAD
+                    classname="mb-2"
+                    id="basic-url4"
+                    name={checkPassword}
+                    onChange={(e) => setCheckPassword(e.target.value)}
+=======
                    
                     classname="mb-2"
                       id="basic-url4"
                       name={checkPassword}
                       onChange={(e) => setCheckPassword(e.target.value)}
+>>>>>>> Nealxero-main
                   >
                     <Form.Control
                       placeholder="Repeat Password"

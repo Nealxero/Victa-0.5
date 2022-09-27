@@ -5,10 +5,17 @@ Revision ID: c9211f0012f8
 Revises: 
 Create Date: 2022-09-26 20:22:27.217239
 ========
+<<<<<<< HEAD
+Revision ID: 578165493c78
+Revises: 
+Create Date: 2022-09-26 16:46:59.230885
+>>>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec:migrations/versions/578165493c78_.py
+=======
 Revision ID: cc260ead2097
 Revises: 
 Create Date: 2022-09-26 20:12:54.738979
 >>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd:migrations/versions/cc260ead2097_.py
+>>>>>>> Nealxero-main
 
 """
 from alembic import op
@@ -19,8 +26,13 @@ import sqlalchemy as sa
 <<<<<<<< HEAD:migrations/versions/c9211f0012f8_.py
 revision = 'c9211f0012f8'
 ========
+<<<<<<< HEAD
+revision = '578165493c78'
+>>>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec:migrations/versions/578165493c78_.py
+=======
 revision = 'cc260ead2097'
 >>>>>>>> 711b5ea3395720e620217b295e79087241c5abdd:migrations/versions/cc260ead2097_.py
+>>>>>>> Nealxero-main
 down_revision = None
 branch_labels = None
 depends_on = None

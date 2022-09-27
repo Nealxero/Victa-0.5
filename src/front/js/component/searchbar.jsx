@@ -27,7 +27,7 @@ const fetchFoodData = async (key) => {
 
 const addFavorite = (title) => {
   const userToken = localStorage.getItem('user_id');
-  const url = `https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/user/${userToken}/favorites/${title}`
+  const url = `http://192.168.22.122:3001/api/user/${userToken}/favorites/${title}`
 
   return fetch(url, {
     method: "POST",

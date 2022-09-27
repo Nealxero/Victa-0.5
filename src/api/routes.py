@@ -69,7 +69,6 @@ def create_new_user():
         user_password = request.json.get('user-password', None)
         user_username = request.json.get('user-name', None)
         user = User(password=user_password,
-                   
                     email=user_email, username=user_username)
         db.session.add(user)
         db.session.commit()
@@ -84,7 +83,7 @@ def create_new_user():
 
     except Exception as error:
 
-        return jsonify({"message":  "Something went wrong, Try again!"})
+        return jsonify({"message": "Something went wrong, Try again!"})
 
 
 @api.route('/login', methods=['POST'])
@@ -154,7 +153,6 @@ def meal_list():
     meal = Meal.query.all()
     response_body_meal = list(map(lambda s: s.to_dict(), meal))
     return jsonify(response_body_meal), 200
-
 
 
 @api.route('/meals/<meal_id>', methods=['GET'])
@@ -284,9 +282,6 @@ def user_update_email():
 
     user = User.query.filter_by(email=identity).one_or_none()
 
-
-    user = User.query.filter_by(email=identity).one_or_none()
-
     user_email = request.json.get('user-email', None)
     user.email = user_email
 
@@ -306,20 +301,12 @@ def user_update_email():
     #     return jsonify("This user doesn't exist", print(error)), 400 ###
 
 
-
 @api.route('/user/account_password', methods=['PUT'])
 @jwt_required()
 def user_update_password():
 
     # Recuperamos el usuario logeado
-
-    # Recuperamos el usuario logeado
     identity = get_jwt_identity()
-
-    # Hacemos la query en la db con el usuario recuperado del JWT
-    user = User.query.filter_by(email=identity).one_or_none()
-
-    # Conseguimos la nueva contraseña de nuestro request
 
     # Hacemos la query en la db con el usuario recuperado del JWT
     user = User.query.filter_by(email=identity).one_or_none()
@@ -333,7 +320,6 @@ def user_update_password():
 
     # Guardamos los cambios en la db para hacerlos permanentes
     db.session.commit()
-
 
     return jsonify(user=user.to_dict()), 200
     # try:
