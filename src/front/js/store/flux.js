@@ -101,6 +101,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const responseJson = await response.json();
 				setStore(responseJson);
 			},
+      
+      updateFavoriteList: (newElement) => {
+        const store = getStore();
+        console.log(store);
+        const newFavorites = [...store.favorites, newElement];
+        setStore({ favorites: newFavorites });
+      },
+
+      deleteFavorite: (data) => {
+        //get the store
+        const store = getStore();
+
+        let newFavorites = store.favorites.filter((item, i) => i != data);
+
+        setStore({ favorites: newFavorites });
+        
+      },
       loadSomeData: () => {
 				getActions().loadUsers()
         getActions().loadMeals()

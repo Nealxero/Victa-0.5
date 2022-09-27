@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import "../../styles/searchbar.css";
-import { FaSearch, FaHeart, FaRegTimesCircle } from 'react-icons/fa';
+import { FaSearch, FaHeart, FaRegTimesCircle } from "react-icons/fa";
 import Sidebar from "../component/sidebar.jsx";
 import { Card } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
-
-
+import Button from "react-bootstrap/Button";
 
 const fetchFoodData = async (key) => {
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=64c7278dfdd7444cb9348aa2866a9ca2&query=${key}`;
@@ -25,25 +23,23 @@ const fetchFoodData = async (key) => {
     });
 };
 
-const addFavorite = (title) => {
-  const userToken = localStorage.getItem('user_id');
-  const url = `http://192.168.22.122:3001/api/user/${userToken}/favorites/${title}`
+const addFavorite = async (title) => {
+  const userToken = localStorage.getItem("user_id");
+  const url = `https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/user/${userToken}/favorites/${title}`;
 
-  return fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((fetchResponse) => {
-      return fetchResponse.json();
-    })
-    .then((jsonResponse) => jsonResponse)
-    .catch((error) => {
-      console.log(error);
+  try {
+    const fetchResponse = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-
-}
+    const jsonResponse = await fetchResponse.json();
+    return jsonResponse;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 function SearchBar({ placeholder, data }) {
   const [loading, setLoading] = useState(false);
@@ -76,7 +72,6 @@ function SearchBar({ placeholder, data }) {
     setLoading(false);
   };
 
-
   return (
     <Sidebar>
       <div className="search">
@@ -101,16 +96,16 @@ function SearchBar({ placeholder, data }) {
         {filteredData.length != 0 && (
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {filteredData.slice(0, 15).map((value, key) => {
-              console.log(value)
+              console.log(value);
               return (
                 <Card>
                   <Card.Img src={value?.image} />
 
                   <p>{value.title} </p>
-                  <Button onClick={addFavorite(value.title)}><FaHeart /></Button>
-                  
-                  
 
+                  <Button onClick={() => addFavorite(value.title)}>
+                    <FaHeart />
+                  </Button>
                 </Card>
               );
             })}

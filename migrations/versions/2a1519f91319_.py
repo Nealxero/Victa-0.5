@@ -1,14 +1,8 @@
 """empty message
 
-<<<<<<<< HEAD:migrations/versions/c9211f0012f8_.py
-Revision ID: c9211f0012f8
+Revision ID: 2a1519f91319
 Revises: 
-Create Date: 2022-09-26 20:22:27.217239
-========
-Revision ID: 578165493c78
-Revises: 
-Create Date: 2022-09-26 16:46:59.230885
->>>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec:migrations/versions/578165493c78_.py
+Create Date: 2022-09-27 15:30:28.252361
 
 """
 from alembic import op
@@ -16,11 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< HEAD:migrations/versions/c9211f0012f8_.py
-revision = 'c9211f0012f8'
-========
-revision = '578165493c78'
->>>>>>>> 73bade6b5e3c46151ed5cabf8424e88822a890ec:migrations/versions/578165493c78_.py
+revision = '2a1519f91319'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -49,9 +39,9 @@ def upgrade():
     op.create_table('meal',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=120), nullable=False),
-    sa.Column('sumarize', sa.String(length=120), nullable=False),
-    sa.Column('nutrients', sa.String(length=80), nullable=False),
-    sa.Column('ingredients', sa.String(length=80), nullable=False),
+    sa.Column('sumarize', sa.String(length=120), nullable=True),
+    sa.Column('nutrients', sa.String(length=80), nullable=True),
+    sa.Column('ingredients', sa.String(length=80), nullable=True),
     sa.Column('favorite', sa.Boolean(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('daily_plan_id', sa.Integer(), nullable=True),
