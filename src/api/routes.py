@@ -203,9 +203,9 @@ def delete_favorite(meal_id):
     return jsonify(favs.to_dict()), 200
     
 
-@api.route('/meal/<meal_id>/add/<title>/<user_id>', methods=['POST'])
-def add_favorites(meal_id, title, user_id):
-    meal = Meal(name=title, id=meal_id, favorite=True, user_id=user_id)
+@api.route('/meal/add/<title>/<user_id>', methods=['POST'])
+def add_favorites( title, user_id):
+    meal = Meal(name=title, favorite=True, user_id=user_id)
     db.session.add(meal)
     db.session.commit()
     

@@ -27,7 +27,7 @@ const fetchFoodData = async (key) => {
 
 const addFavorite = (meal_id, title) => {
   const userToken = localStorage.getItem('user_id');
-  const url = `http://192.168.0.12:3001/api/meal/${meal_id}/add/${title}/${userToken}`
+  const url = `http://192.168.0.12:3001/api/meal/add/${title}/${userToken}`
 
   return fetch(url, {
     method: "POST",
