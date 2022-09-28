@@ -15,7 +15,7 @@ export const SignUp = () => {
   const CreateUser = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/signup",
+      `${process.env.BACKEND_URL}/api/signup`,
       {
         method: "POST",
         body: JSON.stringify({ "user-name": username, "user-email": email, "user-password": password }),

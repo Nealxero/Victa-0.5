@@ -27,7 +27,7 @@ const Account = () => {
 
     if (updatePassword === checkPassword) {
       const updatePass = await fetch(
-        "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/user/account_password",
+        `${process.env.BACKEND_URL}/api/user/account_password`,
         {
           method: "PUT",
           body: JSON.stringify({ "user-password": updatePassword }),
@@ -54,7 +54,7 @@ const Account = () => {
 
     if (updateEmail === checkEmail) {
       const updateMail = await fetch(
-        "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/user/account_email",
+        `${process.env.BACKEND_URL}/api/user/account_email`,
         {
           method: "PUT",
           body: JSON.stringify({ "user-email": updateEmail }),

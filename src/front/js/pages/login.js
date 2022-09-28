@@ -26,7 +26,7 @@ export const Login = () => {
     };
 
     const promiseResponse = await fetch(
-      "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/login",
+      `${process.env.BACKEND_URL}/api/login`,
       loginOptions
     )
       .then((resp) => {

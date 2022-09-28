@@ -1,4 +1,4 @@
-const API_URL = "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/";
+const API_URL = `${process.env.BACKEND_URL}/api/`;
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -108,7 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         let newFavorites = store.favorites.filter((item, i) => i != data);
         console.log(data)
         setStore({ favorites: newFavorites });
-        const url = `https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/meal/${value.id}/delete`
+        const url = `${process.env.BACKEND_URL}/api/meal/${value.id}/delete`
 
 
         return fetch(url, {
