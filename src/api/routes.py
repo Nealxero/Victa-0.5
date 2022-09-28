@@ -83,21 +83,25 @@ def create_new_user():
 
     except Exception as error:
 
-        return jsonify({"message": "Something went wrong, Try again!"})
+        return jsonify({"message": "Something went wrong, Try again!"}), error, 400
 
 
 @api.route('/login', methods=['POST'])
 def user_login():
-    email = request.json.get('user-email', None)
-    password = request.json.get('user-password', None)
-    print(request.json)
-    user = User.query.filter_by(email=email, password=password).one_or_none()
-    if user is None:
-        return jsonify({"msg": "Something went wrong, please try again!"}), 401
+    try:
+        email = request.json.get('user-email', None)
+        password = request.json.get('user-password', None)
+        print(request.json)
+        user = User.query.filter_by(email=email, password=password).one_or_none()
+        if user is None:
+            return jsonify({"msg": "Something went wrong, please try again!"}), 401
 
-    # token
-    access_token = create_access_token(identity=user.email)
-    return jsonify({"token": access_token, "user_id": user.id, "email": user.email})
+        # token
+        access_token = create_access_token(identity=user.email)
+        return jsonify({"token": access_token, "user_id": user.id, "email": user.email})
+
+    except Exception as error:
+        return jsonify({"message": "Something went wrong, Try again!"}), error, 400
 
 
 @api.route('/forgot-password', methods=['POST'])
@@ -185,33 +189,23 @@ def get_user_favorites(user_id):
         fav_list.append(fav.to_dict())
     
     return jsonify(fav_list), 200
+
+
+@api.route('/meal/<meal_id>/delete/', methods=['POST'])
+def delete_favorite(meal_id):
     
-    #except Exception as error:
-    #    return jsonify("This user doesn't have favorites", print(error)), 400
+    #try:
+    favs = Meal.query.filter_by(id=meal_id).one_or_none()
+    
+    favs.favorite = False
+    db.session.commit()
+    
+    return jsonify(favs.to_dict()), 200
+    
 
-    try:
-        user_final = ({
-            'id': user.id,
-            'username': user.username,
-            'favorites': []
-        })
-
-        for fav in user.meals:
-            user_final['favorites'].append({
-                'id': fav.id,
-                'name': fav.name,
-                'sumarize': fav.sumarize,
-                'nutrients': fav.nutrients,
-                'ingredients': fav.ingredients,
-            })
-
-        return jsonify(user_final), 200
-    except Exception as error:
-        return jsonify("This user doesn't have favorites", print(error)), 400
-
-@api.route('/user/<user_id>/favorites/<title>', methods=['POST'])
-def add_favorites(user_id, title):
-    meal = Meal(name=title, user_id=user_id, favorite=True)
+@api.route('/meal/add/<title>/<user_id>', methods=['POST'])
+def add_favorites( title, user_id):
+    meal = Meal(name=title, favorite=True, user_id=user_id)
     db.session.add(meal)
     db.session.commit()
     

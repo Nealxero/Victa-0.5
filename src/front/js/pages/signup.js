@@ -18,7 +18,7 @@ export const SignUp = () => {
       "https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/signup",
       {
         method: "POST",
-        body: JSON.stringify({ "user-name":username, "user-email":email, "user-password":password }),
+        body: JSON.stringify({ "user-name": username, "user-email": email, "user-password": password }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,7 +42,7 @@ export const SignUp = () => {
         />
       </div>
       <div id="card">
-        
+
         <div id="card-content">
           <div id="card-title">
             <h2>SIGN UP</h2>

@@ -6,7 +6,7 @@ import "../styles/searchbar.css";
 import injectContext from "./store/appContext";
 import Dashboard from "./pages/dashboard.jsx";
 import RecipeSearch from "./pages/recipesearch.jsx";
-import Favorites from "./pages/favorites.jsx";
+import { Favorites } from "./pages/favorites";
 import Sidebar from "./component/sidebar.jsx";
 import Account from "./pages/account.jsx"; // this wasn't here
 import Logout from "./pages/logout.jsx";

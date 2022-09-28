@@ -1,3 +1,6 @@
+
+
+
 .searchInputs {
   margin-top: 15px;
   display: flex;
@@ -5,30 +8,18 @@
   height: 30px;
   width: 600px;
 }
-
-  .searchInput {
-    background-color: white;
-    border: 0;
-    border-radius: 0px;
-    border-color: white;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    font-size: 18px;
-    padding: 0px;
-    height: 30px;
-    
-  }
   
   .searchIcon {
     height: 30px;
     width: 50px;
     background-color: white;
-    display: grid;
+    display: flex;
     padding-top: 2.5px;
     padding-left: 10px;
   }
+ 
 
-  input:focus {
+  #inputF4v:focus {
     outline: none;
   }
   .searchIcon svg {
@@ -49,7 +40,7 @@
   }
   
   .dataResult .dataItem {
-    width: 100%;
+    width: 25%;
     height: 50px;
     display: flex;
     align-items: center;

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "../../styles/searchbar.css";
 import { FaSearch, FaHeart, FaRegTimesCircle } from "react-icons/fa";
 import Sidebar from "../component/sidebar.jsx";
-import { Card } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import { Card, Button, CardGroup, Container } from "react-bootstrap";
 
 const fetchFoodData = async (key) => {
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=64c7278dfdd7444cb9348aa2866a9ca2&query=${key}`;
@@ -25,7 +24,7 @@ const fetchFoodData = async (key) => {
 
 const addFavorite = async (title) => {
   const userToken = localStorage.getItem("user_id");
-  const url = `https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/user/${userToken}/favorites/${title}`;
+  const url = `https://3001-nealxero-finalprojectna-fxjpcu5gpuq.ws-eu67.gitpod.io/api/meal/add/${title}/${userToken}`;
 
   try {
     const fetchResponse = await fetch(url, {
@@ -74,7 +73,7 @@ function SearchBar({ placeholder, data }) {
 
   return (
     <Sidebar>
-      <div className="search">
+      <div className="search" id="searchComplex">
         <div className="searchInputs">
           <input
             className="form-control input-lg"
@@ -82,6 +81,8 @@ function SearchBar({ placeholder, data }) {
             placeholder={placeholder}
             value={tered}
             onChange={handleFilter}
+            id="inputF4v"
+            
           />
           <div className="searchIcon">
             {filteredData.length === 0 ? (
@@ -96,17 +97,23 @@ function SearchBar({ placeholder, data }) {
         {filteredData.length != 0 && (
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {filteredData.slice(0, 15).map((value, key) => {
-              console.log(value);
+              ;
               return (
+                <Container fluid style={{padding: '7px', display: 'inline-block', width: '20rem'}}>
+                <CardGroup >
                 <Card>
                   <Card.Img src={value?.image} />
 
                   <p>{value.title} </p>
 
+                  
+                  <Card.Footer>
                   <Button onClick={() => addFavorite(value.title)}>
                     <FaHeart />
                   </Button>
+                  </Card.Footer>
                 </Card>
+                </CardGroup></Container>
               );
             })}
           </div>
@@ -117,3 +124,6 @@ function SearchBar({ placeholder, data }) {
 }
 
 export default SearchBar;
+
+
+// <Button onClick={() => addFavorite(value.id, value.title)}><FaHeart /></Button> Line 105
