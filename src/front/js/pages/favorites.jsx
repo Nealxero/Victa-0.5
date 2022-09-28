@@ -8,6 +8,7 @@ import "../../styles/fav.css";
 
 import { FaHeart, FaTrash } from "react-icons/fa";
 
+// Test Heroku
 export const Favorites = () => {
   const { store, actions } = useContext(Context);
 
