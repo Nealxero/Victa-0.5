@@ -1,14 +1,8 @@
 """empty message
 
-<<<<<<<< HEAD:migrations/versions/2a1519f91319_.py
-Revision ID: 2a1519f91319
+Revision ID: 2ef42ba7d9ed
 Revises: 
-Create Date: 2022-09-27 15:30:28.252361
-========
-Revision ID: 5604462caeb5
-Revises: 
-Create Date: 2022-09-27 15:45:51.596122
->>>>>>>> bc42560643c63336c424325eac86124bcfa378e3:migrations/versions/5604462caeb5_.py
+Create Date: 2022-09-28 15:41:30.068119
 
 """
 from alembic import op
@@ -16,11 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< HEAD:migrations/versions/2a1519f91319_.py
-revision = '2a1519f91319'
-========
-revision = '5604462caeb5'
->>>>>>>> bc42560643c63336c424325eac86124bcfa378e3:migrations/versions/5604462caeb5_.py
+revision = '2ef42ba7d9ed'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -58,8 +48,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['daily_plan_id'], ['daily_plan.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('id'),
-    sa.UniqueConstraint('name')
+    sa.UniqueConstraint('id')
     )
     op.create_table('first_block',
     sa.Column('daily_plan_id', sa.Integer(), nullable=True),
