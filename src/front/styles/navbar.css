@@ -1,65 +1,60 @@
+#sideContainer {
+  display: flex;
+  position: relative;
+  padding: 0;
+  float: left;
+}
 
-  #sideContainer {
-    display: flex;
-    position: relative;
-    padding: 0;
-    float: left;
-  }
- 
-  .sidebar {
-    background: #f9b551;
-    color: rgb(0, 0, 0);
-    height: 100vh;
-    width: 200px;
-    transition: all 0.5s;
-    position: sticky;
-    
-  }
-  .top_section {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-  }
-  .appname {
-    font-size: 30px;
-    display: flex;
-    padding: 5px 5px;
-  }
-  .bars {
-    display: flex;
-    font-size: 25px;
-    padding: 20px 15px;
-  }
-  .link {
-    display: flex;
-    color: rgb(0, 0, 0);
-    padding: 10px 15px;
-    align-items: left;
-    gap: 25px;
-    transition: all 0.5s;
-  }
-  .link:hover {
-    background: lightskyblue;
-    color: #000;
-    transition: all 0.5s;
-  }
-  .active {
-    background: #f9e051;
-    color: #ffffff;
-  }
-  .icon,
-  .link_text {
-    font-size: 20px;
-  }
-  .logo {
-    display: flex;
-    height: 50px;
-    width: 50px;
-    padding: 10px 10px;
-  }
-  .logo_name {
-    display: flex;
-  }
-  
-  
-  
+.sidebar {
+  background: #f9b551;
+  color: rgb(0, 0, 0);
+  height: 100vh;
+  width: 200px;
+  transition: all 0.5s;
+  position: sticky;
+}
+.top_section {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+.appname {
+  font-size: 30px;
+  display: flex;
+  padding: 5px 5px;
+}
+.bars {
+  display: flex;
+  font-size: 25px;
+  padding: 20px 15px;
+}
+.link {
+  display: flex;
+  color: rgb(0, 0, 0);
+  padding: 10px 15px;
+  align-items: left;
+  gap: 25px;
+  transition: all 0.5s;
+}
+.link:hover {
+  background: lightskyblue;
+  color: #000;
+  transition: all 0.5s;
+}
+.active {
+  background: #f9e051;
+  color: #ffffff;
+}
+.icon,
+.link_text {
+  font-size: 20px;
+}
+.logo {
+  display: flex;
+  height: 50px;
+  width: 50px;
+  padding: 10px 10px;
+}
+.logo_name {
+  display: flex;
+}
