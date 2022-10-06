@@ -1,18 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-  }
+
   #sideContainer {
     display: flex;
     position: relative;
     padding: 0;
     float: left;
   }
-  main {
-    width: 100%;
-    padding: 20px;
-  }
+ 
   .sidebar {
     background: #f9b551;
     color: rgb(0, 0, 0);

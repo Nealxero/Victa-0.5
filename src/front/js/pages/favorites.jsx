@@ -16,7 +16,7 @@ export const Favorites = () => {
   if (!favs) return <p>loading...</p>;
   return (
     <Sidebar>
-      <div className="container-fluid">
+      <div className="container-fluid" id="containerFavCards">
       <div className="card-group">
       {favs.map((value, index) => {
         return (

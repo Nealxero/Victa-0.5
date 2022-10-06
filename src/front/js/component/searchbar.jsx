@@ -98,8 +98,8 @@ function SearchBar({ placeholder, data }) {
           </div>
         </div >
         {filteredData.length != 0 && (
-          <div className="card-group">
-            {filteredData.slice(0, 5).map((value, key) => {
+          <div className="card-group" id="searchCardGroup">
+            {filteredData.slice(0, 15).map((value, key) => {
               ;
               return (  
                 <div className="card" id="searchCards">

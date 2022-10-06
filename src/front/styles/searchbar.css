@@ -1,13 +1,15 @@
 
 #containerSearch { 
   justify-content: center;
-  
+  display: flex;
+  flex-wrap: wrap;
+
 }
 
                          /* Search bar Styles here */
 .searchInputs {
   margin-top: 15px;
-  margin-left: 275px;
+  
   display: flex;
   background-color: rgba(0, 0, 0, 0);
   height: 70px;
@@ -78,6 +80,11 @@
   }
   
                        /* Card Styles starting here */
+#searchCardGroup{
+  
+}
+
+
 
 #searchCards { 
   height: 400px;
