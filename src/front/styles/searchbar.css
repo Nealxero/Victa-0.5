@@ -1,29 +1,48 @@
 
+#containerSearch { 
+  justify-content: center;
+  
+}
 
-
+                         /* Search bar Styles here */
 .searchInputs {
   margin-top: 15px;
+  margin-left: 275px;
   display: flex;
-  background-color: white;
-  height: 30px;
-  width: 600px;
-}
+  background-color: rgba(0, 0, 0, 0);
+  height: 70px;
+  width: 500px;
   
-  .searchIcon {
-    height: 30px;
-    width: 50px;
-    background-color: white;
+}
+  #buttonSearch{
+    background-color: orange;
+    height: 70px;
+    border-radius: 10%;
+    width: 60px;
+    justify-content: center;
+  }
+
+  #clearBtn {
+    justify-content: center;
+    cursor: pointer;
+    height: 70px;
+    width: 60px;
+    background-color: orange;
+    border-radius: 10%;
+    color: rgb(0, 0, 0);
     display: flex;
-    padding-top: 2.5px;
-    padding-left: 10px;
+    font-size: 20px;
   }
  
 
   #inputF4v:focus {
     outline: none;
+    font-size: 30px;
   }
+
   .searchIcon svg {
-    font-size: 25px;
+    font-size: 40px;
+    margin-top: 11px;
   }
   
   .dataResult {
@@ -58,7 +77,10 @@
     background-color: lightgrey;
   }
   
-  #clearBtn {
-    cursor: pointer;
-  }
-  
+                       /* Card Styles starting here */
+
+#searchCards { 
+  height: 400px;
+  width: 300px;
+  margin: 10px;
+}         

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../styles/searchbar.css";
-import { FaSearch, FaHeart, FaRegTimesCircle } from "react-icons/fa";
+import { FaSearch, FaHeart, FaRegTimesCircle,  } from "react-icons/fa";
 import Sidebar from "../component/sidebar.jsx";
 import { Card, Button, CardGroup, Container } from "react-bootstrap";
 
@@ -73,6 +73,7 @@ function SearchBar({ placeholder, data }) {
 
   return (
     <Sidebar>
+      <div className="container-fluid" id="containerSearch">
       <div className="search" id="searchComplex">
         <div className="searchInputs">
           <input
@@ -86,38 +87,38 @@ function SearchBar({ placeholder, data }) {
           />
           <div className="searchIcon">
             {filteredData.length === 0 ? (
-              <button disabled={loading} onClick={handleFetchData}>
+              <button disabled={loading} onClick={handleFetchData} id="buttonSearch">
                 <FaSearch />
               </button>
             ) : (
-              <FaRegTimesCircle id="clearBtn" onClick={clearInput} />
+              <button id="clearBtn" onClick={clearInput}>
+                <FaRegTimesCircle  />
+                </button>
             )}
           </div>
-        </div>
+        </div >
         {filteredData.length != 0 && (
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {filteredData.slice(0, 15).map((value, key) => {
+          <div className="card-group">
+            {filteredData.slice(0, 5).map((value, key) => {
               ;
-              return (
-                <Container fluid style={{padding: '7px', display: 'inline-block', width: '20rem'}}>
-                <CardGroup >
-                <Card>
-                  <Card.Img src={value?.image} />
+              return (  
+                <div className="card" id="searchCards">
+                  <img className="card-img-top" src={value?.image} />
 
                   <p>{value.title} </p>
 
                   
-                  <Card.Footer>
-                  <Button onClick={() => addFavorite(value.title)}>
+                  <div className="card-footer">
+                  <button className="btn btn-success "onClick={() => addFavorite(value.title)}>
                     <FaHeart />
-                  </Button>
-                  </Card.Footer>
-                </Card>
-                </CardGroup></Container>
+                  </button>
+                  </div>
+                </div>
               );
             })}
           </div>
         )}
+      </div>
       </div>
     </Sidebar>
   );

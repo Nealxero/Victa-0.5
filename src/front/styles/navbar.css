@@ -3,7 +3,7 @@
     padding: 0;
     text-decoration: none;
   }
-  .container {
+  #sideContainer {
     display: flex;
     position: relative;
     padding: 0;
@@ -19,6 +19,8 @@
     height: 100vh;
     width: 200px;
     transition: all 0.5s;
+    position: sticky;
+    
   }
   .top_section {
     display: flex;

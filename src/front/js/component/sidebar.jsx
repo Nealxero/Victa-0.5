@@ -45,7 +45,7 @@ const Sidebar = ({ children }) => {
     },
   ];
   return (
-    <div className="container">
+    <div className="container-fluid" id="sideContainer">
       <div style={{ width: isOpen ? "300px" : "50px" }} className="sidebar">
         <div className="top_section">
           <div className="logo_name">
@@ -54,7 +54,7 @@ const Sidebar = ({ children }) => {
               style={{ display: isOpen ? "block" : "none" }}
               className="appname"
             >
-              Name
+              Victa
             </h1>
           </div>
           <div style={{ marginLeft: isOpen ? "0px" : "0px" }} className="bars">

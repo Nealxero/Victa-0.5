@@ -16,31 +16,33 @@ export const Favorites = () => {
   if (!favs) return <p>loading...</p>;
   return (
     <Sidebar>
+      <div className="container-fluid">
+      <div className="card-group">
       {favs.map((value, index) => {
         return (
-          <Container fluid style={{display: 'inline-block', width: '25rem', height: "25rem" }}>
-            <Stack gap={4}>
-              <Card >
-                <Card.Body>
-                  <Card.Title>{value.name}</Card.Title>
-                  <Card.Text>
+              <div className="card" >
+                <div className="card-body">
+                  <div className="card-title">{value.name}</div>
+                  <div className="card-text">
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content.
-                  </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                  <Button
+                  </div>
+                </div>
+                <div className="card-footer">
+                  <button
+                    className="btn btn-danger"
                     variant="danger"
                     onClick={() => actions.deleteFavorite(value, index)}
                   >
                     <FaTrash />
-                  </Button>
-                </Card.Footer>
-              </Card>
-            </Stack>
-          </Container>
+                  </button>
+                </div>
+              </div>
+           
         );
       })}
+      </div>
+      </div>
     </Sidebar>
   );
 };
