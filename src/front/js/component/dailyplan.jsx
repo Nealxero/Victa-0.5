@@ -15,7 +15,7 @@ export const DailyPlan = props => {
     console.log(props.plans.id)
     // {props.plans.map((block,index) => { return <p></p>})}
     return (
-        <Col>
+        <Col id="calendarCol">
             <Stack gap={4}>
                 <DayOfWeek name={props.plans.name}/>
 

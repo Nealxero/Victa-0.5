@@ -4,9 +4,9 @@ import BookData from '../../../../data.json';
 
 const RecipeSearch = ()=>{
     return (
-        <div>
+        <>
             <SearchBar placeholder="Search..." data={BookData}/>
-        </div>
+        </>
     );
 };
 

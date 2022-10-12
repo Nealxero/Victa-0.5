@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "../../styles/searchbar.css";
 import { FaSearch, FaHeart, FaRegTimesCircle,  } from "react-icons/fa";
 import Sidebar from "../component/sidebar.jsx";
-import { Card, Button, CardGroup, Container } from "react-bootstrap";
+import { Card, Button, CardGroup, Container, Image, Row, Col } from "react-bootstrap";
 
 const fetchFoodData = async (key) => {
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=64c7278dfdd7444cb9348aa2866a9ca2&query=${key}`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=64c7278dfdd7444cb9348aa2866a9ca2&query=${key}&number=100`;
 
   return fetch(url, {
     method: "GET",
@@ -98,8 +98,9 @@ function SearchBar({ placeholder, data }) {
           </div>
         </div >
         {filteredData.length != 0 && (
-          <div className="card-group" id="searchCardGroup">
-            {filteredData.slice(0, 15).map((value, key) => {
+          /**<div className="card-group" id="searchCardGroup">*/
+          <Col>
+            {filteredData.slice(0, 15).map((value, key) => {/** 
               ;
               return (  
                 <div className="card" id="searchCards">
@@ -115,11 +116,27 @@ function SearchBar({ placeholder, data }) {
                   </div>
                 </div>
               );
-            })}
-          </div>
+            })*/
+          return (
+            <>
+            <Row className="justify-content-between bg-white align-items-center my-4">
+              <Col lg={2}>
+                <Image fluid src={value?.image}></Image>
+              </Col>
+              <Col lg={9}><h1>{value.title}</h1></Col>
+              <Col lg={1}>
+                <button className="btn btn-success "onClick={() => addFavorite(value.title)}>
+                    <FaHeart />
+                  </button>
+                </Col>
+            </Row></>)})
+
+          }
+          </Col>/*</div>*/
         )}
       </div>
       </div>
+      
     </Sidebar>
   );
 }

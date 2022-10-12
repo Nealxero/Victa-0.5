@@ -80,7 +80,7 @@ const Account = () => {
 
   return (
     <Sidebar>
-      <div className="pages">
+      
         <Card id="CardAccount">
           <Card.Title id="CardTitle"> Account Settings </Card.Title>
           <Card.Body>
@@ -169,7 +169,7 @@ const Account = () => {
             </Accordion>
           </Card.Body>
         </Card>
-      </div>
+      
     </Sidebar>
   );
 };

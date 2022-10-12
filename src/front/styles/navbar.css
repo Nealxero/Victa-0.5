@@ -1,8 +1,6 @@
 #sideContainer {
   display: flex;
-  position: relative;
-  padding: 0;
-  float: left;
+  padding: 0px;
 }
 
 .sidebar {
@@ -11,7 +9,8 @@
   height: 100vh;
   width: 200px;
   transition: all 0.5s;
-  position: sticky;
+  position: fixed;
+  margin: auto;
 }
 .top_section {
   display: flex;

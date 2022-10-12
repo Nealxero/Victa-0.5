@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import Container from 'react-bootstrap/Container';
+
 import '../../styles/calendar.css';
 import { DailyPlan } from './dailyplan.jsx';
 
@@ -12,7 +12,7 @@ function Calendar() {
 
     if (!plans) return <p>Loading</p>
     return (
-        <Container>
+        <div className="container-fluid" id="calendarCont">
             {
 
                 plans[0].map((plan, index) => {
@@ -24,7 +24,7 @@ function Calendar() {
                 })}
 
   
-    </Container>
+    </div>
   );
 }
 
