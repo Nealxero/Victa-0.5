@@ -99,40 +99,40 @@ function SearchBar({ placeholder, data }) {
         </div >
         {filteredData.length != 0 && (
           /**<div className="card-group" id="searchCardGroup">*/
-          <Col>
-            {filteredData.slice(0, 15).map((value, key) => {/** 
+          <div className="col" id="cardsCols">
+            {filteredData.slice(0, 15).map((value, key) => {
               ;
               return (  
                 <div className="card" id="searchCards">
                   <img className="card-img-top" src={value?.image} />
 
-                  <p>{value.title} </p>
+                  <div className="card-body">{value.title} </div>
 
                   
-                  <div className="card-footer">
+                  <div className="card-footer" id="resultfooter">
                   <button className="btn btn-success "onClick={() => addFavorite(value.title)}>
                     <FaHeart />
                   </button>
                   </div>
                 </div>
               );
-            })*/
-          return (
-            <>
-            <Row className="justify-content-between bg-white align-items-center my-4">
-              <Col lg={2}>
-                <Image fluid src={value?.image}></Image>
-              </Col>
-              <Col lg={9}><h1>{value.title}</h1></Col>
-              <Col lg={1}>
-                <button className="btn btn-success "onClick={() => addFavorite(value.title)}>
-                    <FaHeart />
-                  </button>
-                </Col>
-            </Row></>)})
+            })
+          // return (
+          //   <>
+          //   <Row className="justify-content-between bg-white align-items-center my-4">
+          //     <Col lg={2}>
+          //       <Image fluid src={value?.image}></Image>
+          //     </Col>
+          //     <Col lg={9}><h1>{value.title}</h1></Col>
+          //     <Col lg={1}>
+          //       <button className="btn btn-success "onClick={() => addFavorite(value.title)}>
+          //           <FaHeart />
+          //         </button>
+          //       </Col>
+          //   </Row></>)})
 
           }
-          </Col>/*</div>*/
+          </div>/*</div>*/
         )}
       </div>
       </div>

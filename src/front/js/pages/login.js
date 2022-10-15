@@ -3,6 +3,8 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/login.css";
 import { Navigate } from "react-router-dom";
+import { MainSidebar } from "../component/mainsidebar";
+import Victa from "../../img/victa.png";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -10,6 +12,8 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+ 
+  
   let navigate = useNavigate();
 
   const logClick = async (e) => {
@@ -48,9 +52,10 @@ export const Login = () => {
   };
 
   return (
-
-    <div id="containerLogSign">
-      <div id="card">
+<>
+    <MainSidebar>
+    <div className="container" id="containerLogSign">
+      <div id="card" >
         <div id="card-content">
           <div id="card-title">
             <h2>LOGIN</h2>
@@ -80,11 +85,11 @@ export const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             <div className="form-border"></div>
-            <Link to="">
+            
               <legend id="forgot-pass">
                 <Link to="/forgotpassword">Forgot password?</Link>
               </legend>
-            </Link>
+            
             <input
               onClick={(e) => logClick(e)}
               id="submit-btn"
@@ -99,5 +104,7 @@ export const Login = () => {
         </div>
       </div>
     </div>
+    </MainSidebar>
+    </>
   );
 };

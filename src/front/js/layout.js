@@ -17,6 +17,7 @@ import { SignUp } from "./pages/signup";
 import { ForgotPassword } from "./pages/forgot";
 import { Private } from "./pages/private";
 import { ResetPassword } from "./pages/resetpassword";
+import { MainSidebar } from "./component/mainsidebar";
 import { Navigate } from "react-router-dom";
 //create your first component
 const Layout = () => {

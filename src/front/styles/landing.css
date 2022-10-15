@@ -1,45 +1,9 @@
 #landingCont{
     justify-self: center;
-    
-}
-
-
-#titulo {
-    margin-left: 100px;
-    margin-right: auto;
-    font-family: ' Lucida Handwriting', cursive, sans-serif;
-}
-
-
-#landBtn { 
-    background: -webkit-linear-gradient(right, #22e428, #109601);
-    border: none;
-    border-radius: 21px;
-    box-shadow: 0px 1px 8px #e6ff25;
-    cursor: pointer;
-    color: rgb(0, 0, 0);
-    font-family: ' Lucida Handwriting', cursive, sans-serif;
-    font-size: 20px;
-    height: 42.3px;
-    margin: 0 auto;
-    transition: 0.25s;
-    width: 200px;
-}
-
-#landBtn:hover {
-    box-shadow: 0px 1px 18px #ff7b00;
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 
 
-
-#carouselExampleDark { 
-   
-    background: #9c9c9c;
-    
-    border-radius: 8px;
-    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
-    height: 600px;
-    margin: 6rem auto 8.1rem auto;
-    width: 70%;
-}

@@ -17,7 +17,8 @@ export const Favorites = () => {
   return (
     <Sidebar>
       <div className="container-fluid" id="containerFavCards">
-      <div className="card-group">
+      {/* <div className="card-group"> */}
+      <div className="card-deck" >
       {favs.map((value, index) => {
         return (
               <div className="card" >
@@ -41,6 +42,7 @@ export const Favorites = () => {
            
         );
       })}
+      {/* </div> */}
       </div>
       </div>
     </Sidebar>

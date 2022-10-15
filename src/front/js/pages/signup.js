@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-
+import { MainSidebar } from "../component/mainsidebar";
 export const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -33,7 +33,9 @@ export const SignUp = () => {
   };
 
   return (
-    <div id="containerLogSign">
+    <>
+    <MainSidebar >
+    <div  className="container" id="containerLogSign">
      
       <div id="card">
 
@@ -93,5 +95,7 @@ export const SignUp = () => {
         </div>
       </div>
     </div>
+    </MainSidebar>
+    </>
   );
 };

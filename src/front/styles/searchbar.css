@@ -3,7 +3,7 @@
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-
+  margin-left: 40px
 }
 
                          /* Search bar Styles here */
@@ -69,25 +69,26 @@
   }
   
   .dataItem p {
-    margin-left: 10px;
+    margin-left: 15px;
   }
-  a {
-    text-decoration: none;
-  }
-  
-  a:hover {
-    background-color: lightgrey;
-  }
+ 
   
                        /* Card Styles starting here */
-#searchCardGroup{
-  
-}
 
 
 
 #searchCards { 
-  height: 400px;
+  height: auto;
   width: 300px;
   margin: 10px;
+
 }         
+
+#reultfooter {
+ 
+  bottom: 0px;
+}
+
+#cardsCols {
+  overflow:visible
+}

@@ -5,18 +5,22 @@ import {
   FaHeart,
   FaSearch,
   FaBars,
+  
 } from "react-icons/fa";
+
 import { NavLink } from "react-router-dom";
-import Logo from "../../img/rigo-baby.jpg";
+import Logo from "../../img/victa.png";
 import { LogoutModal} from "./logout-modal.jsx";
 
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  const menuItem = [
+
+  
+  const registeredItems = [
     {
       path: "/dashboard",
-      name: "Dashboard",
+      name: "Calendary",
       icon: <FaTh />,
     },
     {
@@ -38,12 +42,12 @@ const Sidebar = ({ children }) => {
     },
 
     {
-      path: "/account",
+      path: "",
       name: "Log Out",
       icon: <LogoutModal/>,
       
     },
-  ];
+  ]; 
   return (
     <div className="container-fluid" id="sideContainer">
       <div style={{ width: isOpen ? "300px" : "50px" }} className="sidebar">
@@ -60,7 +64,7 @@ const Sidebar = ({ children }) => {
           <div style={{ marginLeft: isOpen ? "0px" : "0px" }} className="bars">
             <FaBars onClick={toggle} />
           </div>
-          {menuItem.map((item, index) => (
+          {registeredItems.map((item, index) => (
             <NavLink
               to={item.path}
               key={index}
