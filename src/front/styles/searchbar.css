@@ -3,13 +3,17 @@
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 40px
+  
 }
 
+#searchComplex {
+ 
+  margin-top:75px;
+}
                          /* Search bar Styles here */
 .searchInputs {
   margin-top: 15px;
-  
+  margin-left:350px;
   display: flex;
   background-color: rgba(0, 0, 0, 0);
   height: 70px;
@@ -81,14 +85,29 @@
   height: auto;
   width: 300px;
   margin: 10px;
-
+  display: inline-flex;
+  background-image: url(https://pbs.twimg.com/media/FfMFo9vWIAEvfLd?format=png&name=small);
+  background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   color: rgb(0, 0, 0);
+   border-width: 2px;
+   border-color: rgb(0, 0, 0);
+   font-size: 25px;
+   font-weight: bolder;
+   font-family: "Raleway", sans-serif;
 }         
 
-#reultfooter {
- 
+#resultfooter {
+  border-width: 2px;
+  border-color: rgb(0, 0, 0);
   bottom: 0px;
 }
 
 #cardsCols {
   overflow:visible
+}
+
+#resultBody {
+  height: 150px;
 }

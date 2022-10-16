@@ -1,20 +1,21 @@
 #sideContainer {
   padding: 0px;
-  background-image: url(https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com//content/c4/b4/866135e549079f4dcd264fd659ec/article-gf-mealplan-hero.jpg);
+  /* background-image: url(https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com//content/c4/b4/866135e549079f4dcd264fd659ec/article-gf-mealplan-hero.jpg); */
   background-repeat: no-repeat;
   background-size:cover;
   display:flex;
-  height:100vh
+  height:100%
 
 }
 
 .sidebar {
-  background: #f9b551;
+  background: -webkit-linear-gradient(top, #faad3b,#fbed70 );
   color: rgb(0, 0, 0);
   height: 100%;
   top:0;
   transition: all 0.5s;      
   bottom: 0;
+  
 }                                                 
 .top_section {
   display: flex;
@@ -45,7 +46,7 @@
   transition: all 0.5s;
 }
 .active {
-  background: #f9e051;
+  background: #ff8c00;
   color: #ffffff;
 }
 .icon,

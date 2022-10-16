@@ -4,7 +4,9 @@ HTML {
 
   body {
     min-height: 100%;
-    background: -webkit-linear-gradient(bottom, #f9b551,#FEF8BE );
+    /* background: -webkit-linear-gradient(bottom, #f9b551,#FEF8BE ); */
+    background-image: url(https://pbs.twimg.com/media/FfMKkXeWYAA9kcV?format=jpg&name=medium);
+    /* background-image: url(https://pbs.twimg.com/media/FfL0r9TXwAAAc5d?format=png&name=900x900); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

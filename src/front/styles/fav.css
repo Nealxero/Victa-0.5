@@ -5,8 +5,39 @@
     padding: 5px;
 }
 
-.card {
+#favDeck {
+    
+    margin-left: 15px;
+}
+
+#favCard {
    width: 300px;
    display: inline-block;
-   margin:15px
+   margin:10px;
+   background-image: url(https://pbs.twimg.com/media/FfL0r9TXwAAAc5d?format=png&name=900x900); 
+   
+   border-width: 2px;
+   border-color: black;
+   border-radius: 5%;
+   
+   color: rgb(0, 0, 0);
 }
+#favTitle {
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#favText { 
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+ #favFooter { 
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+ }
+ #favBody {
+    height: 250px;
+ }

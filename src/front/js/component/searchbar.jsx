@@ -73,7 +73,7 @@ function SearchBar({ placeholder, data }) {
 
   return (
     <Sidebar>
-      <div className="container-fluid" id="containerSearch">
+      <div className="container" id="containerSearch">
       <div className="search" id="searchComplex">
         <div className="searchInputs">
           <input
@@ -106,7 +106,9 @@ function SearchBar({ placeholder, data }) {
                 <div className="card" id="searchCards">
                   <img className="card-img-top" src={value?.image} />
 
-                  <div className="card-body">{value.title} </div>
+                  <div className="card-body" id="resultBody"> 
+                  <div className="card-title">{value.title}</div>
+                  </div>
 
                   
                   <div className="card-footer" id="resultfooter">
