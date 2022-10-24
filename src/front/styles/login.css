@@ -13,6 +13,10 @@ HTML {
     background-attachment: fixed;
   }
 
+  main { 
+    margin-left:150px
+  }
+
   label {
     font-family: "Raleway", sans-serif;
     font-size: 15pt;

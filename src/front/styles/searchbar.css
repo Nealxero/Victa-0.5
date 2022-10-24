@@ -6,9 +6,10 @@
   
 }
 
+
 #searchComplex {
  
-  margin-top:75px;
+  margin-top:25px;
 }
                          /* Search bar Styles here */
 .searchInputs {
@@ -105,7 +106,7 @@
 }
 
 #cardsCols {
-  overflow:visible
+  overflow:hidden
 }
 
 #resultBody {

@@ -1,8 +1,15 @@
 #landingCont{
-    justify-self: center;
+   justify-self: center;
    width: 100%;
    margin-left: auto;
    margin-right: auto;
+}
+
+#landingCard {
+   max-width: 70%;
+   background: rgba(255, 255, 255, 0.658);
+   height: auto;
+   margin-left: 50px;
 }
 
 
