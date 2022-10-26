@@ -10,6 +10,7 @@ export const LandingPage = () => {
   return (
     <>
       <MainSidebar>
+        
         <div className="" id="landingCont">
           <div className="card mb-3" id="landingCard">
             <div className="row g-0">
@@ -32,15 +33,15 @@ export const LandingPage = () => {
               </div>
             </div>
           </div>
+          
+
+         
+          
+
+
           <div className="card mb-3" id="landingCard">
             <div className="row g-0">
-              <div className="col-md-4">
-                <img
-                  src={Example}
-                  className="img-fluid rounded-start"
-                  alt="..."
-                />
-              </div>
+
               <div className="col-md-8">
                 <div className="card-body">
                   <h5 className="card-title">Card title</h5>
@@ -51,8 +52,19 @@ export const LandingPage = () => {
                   </p>
                 </div>
               </div>
+
+              <div className="col-md-4">
+                <img
+                  src={Example}
+                  className="img-fluid rounded-start card-image-end"
+                  alt="..."
+                />
+              </div>
+              
+              
             </div>
           </div>
+          
         </div>
       </MainSidebar>
     </>
