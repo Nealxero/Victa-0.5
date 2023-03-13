@@ -4,7 +4,7 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 // const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
-const port = 3000;
+const port = 3002;
 let publicUrl = `ws://localhost:${port}/ws`;
 if(process.env.GITPOD_WORKSPACE_URL){
   const [schema, host] = process.env.GITPOD_WORKSPACE_URL.split('://');

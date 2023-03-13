@@ -179,8 +179,9 @@ def get_meal_by_id(meal_id):
 
 
 @api.route('/user/<user_id>/favorites', methods=['GET'])
+@jwt_required()
 def get_user_favorites(user_id):
-    
+    identity = get_jwt_identity()
     #try:
     favs = Meal.query.filter_by(favorite=True).all()
     
@@ -192,8 +193,9 @@ def get_user_favorites(user_id):
 
 
 @api.route('/meal/<meal_id>/delete/', methods=['POST'])
+@jwt_required()
 def delete_favorite(meal_id):
-    
+    identity = get_jwt_identity()
     #try:
     favs = Meal.query.filter_by(id=meal_id).one_or_none()
     
@@ -204,7 +206,9 @@ def delete_favorite(meal_id):
     
 
 @api.route('/meal/add/<title>/<user_id>', methods=['POST'])
+@jwt_required()
 def add_favorites( title, user_id):
+    identity = get_jwt_identity()
     meal = Meal(name=title, favorite=True, user_id=user_id)
     db.session.add(meal)
     db.session.commit()
@@ -213,6 +217,7 @@ def add_favorites( title, user_id):
 
 
 # --------------   User's Daily plan --------------------------------
+
 
 
 @api.route('/user/<user_id>/daily_meals', methods=['GET'])
@@ -326,3 +331,17 @@ def user_update_password():
     #     return jsonify(user.serialize()), 200
     # except Exception as error:
     #     return jsonify("This user doesn't exist", print(error)), 400 ###
+
+@api.route('user/<user_id>/test', methods=['GET'])
+def get_user_test(user_id):
+    try:
+        user = User.query.filter_by(id=user_id).one_or_none()
+        return jsonify(user.to_dict()), 200
+    except Exception as error:
+        return jsonify("This user doesn't have daily meals", print(error)), 400
+
+@api.route('user/<user_id>/planSemanal', methods=['GET'])
+@jwt_required()
+def get_user_weekplan(user_id):
+    identity= get_jwt_identity()
+    

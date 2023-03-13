@@ -17,7 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         const userToken = localStorage.getItem('user_id');
 
-        fetch(`${API_URL}user/${userToken}/daily_meals`)
+        fetch(`${API_URL}user/${userToken}/daily_planx`)
           .then(data => data.json())
           .then(async (data) => {
 

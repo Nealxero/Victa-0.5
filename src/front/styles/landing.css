@@ -1,19 +1,42 @@
 #landingCont{
    justify-self: center;
    width: 100%;
+   margin-top:50px;
    margin-left: auto;
    margin-right: auto;
 }
 
 #landingCard {
    max-width: 70%;
-   background: rgba(255, 255, 255, 0.658);
+   background: rgba(255, 255, 255, 0.832);
    height: auto;
-   margin-left: 50px;
+   margin-top:50px;
+   margin-left:150px
+   
 }
 
 #alterImg { 
    float: right;
 }
 
+#landTitle { 
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 30px;
+   font-weight:550;
+   align-self: auto;
+   margin-left:125px
+}
 
+#landTitle2 { 
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 30px;
+   font-weight:550;
+   align-self: auto;
+   margin-left:180px
+}
+
+#landText { 
+ font-family: "Raleway", sans-serif;
+ font-size: 18px;
+ font-weight: 500;
+}

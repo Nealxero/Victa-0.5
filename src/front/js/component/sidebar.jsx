@@ -50,7 +50,7 @@ const Sidebar = ({ children }) => {
   ]; 
   return (
     <div className="container-fluid" id="sideContainer">
-      <div style={{ width: isOpen ? "160px" : "50px" }} className="sidebar">
+      <div style={{ width: isOpen ? "200px" : "50px" }} className="sidebar">
         <div className="top_section">
           <div className="logo_name">
             <img className="logo" src={Logo} />

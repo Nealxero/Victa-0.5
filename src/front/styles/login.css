@@ -14,7 +14,7 @@ HTML {
   }
 
   main { 
-    margin-left:150px
+    margin-left: 100px
   }
 
   label {
@@ -50,7 +50,7 @@ HTML {
     width: 700px;
   }
   #card-title {
-    font-family:Georgia, 'Times New Roman', Times, serif ;
+    font-family:Georgia, f'Times New Roman', Times, seri ;
     letter-spacing: 1px;
     padding-bottom: 23px;
     padding-top: 13px;

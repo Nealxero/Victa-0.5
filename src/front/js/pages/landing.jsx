@@ -23,11 +23,12 @@ export const LandingPage = () => {
               </div>
               <div className="col-md-8">
                 <div className="card-body">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
+                  <h5 className="card-title" id="landTitle">Search your favorite Meals</h5>
+                  <p className="card-text" id="landText">
+                  search the dishes you want to add to each day of the week and for
+            each food, in this way you can keep control a have a more balanced
+            and healthy diet
+                 Build your own way to eat through the week with our own and handly meal plannner
                   </p>
                 </div>
               </div>
@@ -44,11 +45,9 @@ export const LandingPage = () => {
 
               <div className="col-md-8">
                 <div className="card-body">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
+                  <h5 className="card-title" id="landTitle2">Planify your Week</h5>
+                  <p className="card-text" id="landText">
+                  Build your own way to eat through the week with our own and handly meal plannner
                   </p>
                 </div>
               </div>

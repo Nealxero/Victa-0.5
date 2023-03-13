@@ -24,7 +24,9 @@ class User(db.Model, SerializerMixin):
         'DailyPlan', backref='User')
     meals = db.relationship('Meal', backref=backref(
         'User', uselist=False), lazy='dynamic')
-
+    test = db.relationship('Prueba', backref=backref(
+        'User', uselist=False), lazy='dynamic')
+        
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -128,6 +130,8 @@ class Meal(db.Model, SerializerMixin):
     # Relationships
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     daily_plan_id = db.Column(db.Integer, db.ForeignKey('daily_plan.id'))
+    test = db.relationship('Prueba', backref=backref(
+        'Meal', uselist=False), lazy='dynamic')
 
     def __repr__(self):
         return f'Meal( id : "{str(self.id)}",  name : "{str(self.name)}", sumarize : "{str(self.sumarize)}",  nutrients : "{str(self.nutrients)}",  ingredients : "{str(self.ingredients)}")'
@@ -148,6 +152,25 @@ class Meal(db.Model, SerializerMixin):
         else:
             return None
 
+class Prueba (db.Model):
+    id = db.Column(db.Integer, unique=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    meal_id = db.Column(db.Integer, db.ForeignKey('meal.id'))
+    day = db.Column(db.String(20))
+    bloque = db.Column(db.String(20))
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id":self.user_id,
+            "meal_id":self.meal_id,
+            "day": self.day,
+            "bloque": self.bloque
+            # do not serialize the password, its a security breach
+        }
+                    #Relationships
+
+    
 
 #                        Dont know if necessary
 

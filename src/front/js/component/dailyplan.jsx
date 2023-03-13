@@ -17,7 +17,7 @@ export const DailyPlan = props => {
     return (
         <Col id="calendarCol">
             <Stack gap={4}>
-                <DayOfWeek name={props.plans.name}/>
+                <DayOfWeek name={props.plans.day}/>
 
 
                 < DailyMeal name={props.plans.name} type="Breakfast" block={props.plans.first_block}/>

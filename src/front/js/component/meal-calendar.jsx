@@ -19,7 +19,7 @@ export const DailyMeal = props => {
     return (
         <div className='row-sm ms auto meal' activeclassname="active" >
             <Example meals={props.block} name={props.name} type={props.type} />
-            {props.block.map((meal, index) => { return <p>{meal.name}</p>})}
+            {props.block.map((meal) => { return <p>{meal.name}</p>})}
             
         </div>
     )

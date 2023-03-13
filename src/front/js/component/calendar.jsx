@@ -7,9 +7,10 @@ import { DailyPlan } from './dailyplan.jsx';
 function Calendar() {
     const { store, actions } = useContext(Context);
     
+
     const plans = store.users.map((item, index) => { return item.daily_plans })
     
-
+    
     if (!plans) return <p>Loading</p>
     return (
         <div className="container-fluid" id="calendarCont">

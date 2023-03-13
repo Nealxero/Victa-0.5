@@ -10,11 +10,12 @@
 #searchComplex {
  
   margin-top:25px;
+  margin:auto
 }
                          /* Search bar Styles here */
 .searchInputs {
   margin-top: 15px;
-  margin-left:350px;
+  margin-left:400px;
   display: flex;
   background-color: rgba(0, 0, 0, 0);
   height: 70px;
@@ -106,7 +107,8 @@
 }
 
 #cardsCols {
-  overflow:hidden
+  overflow:hidden;
+  
 }
 
 #resultBody {

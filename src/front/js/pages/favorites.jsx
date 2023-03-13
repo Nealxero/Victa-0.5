@@ -23,6 +23,7 @@ export const Favorites = () => {
         return (
               <div className="card" id="favCard">
                 <div className="card-body" id="favBody">
+                  <img className="card-img-top" src={value?.img}/>
                   <div className="card-title" id="favTitle">{value.name}</div>
                   <div className="card-text" id="favText">
                     Some quick example text to build on the card title and make
