@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from "react"
 import { Context } from "../store/appContext";
 import { Login } from "./login";
-import Logout from "./logout";
+import Logout from "./logout.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 

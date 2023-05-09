@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import '../../styles/calendar.css';
 import { FaPlus } from "react-icons/fa";
 import PropTypes from "prop-types";
-import AddModal from './add-modal';
-import { Example } from './mealcard-modal';
+import AddModal from './add-modal.jsx';
+import { Example } from './mealcard-modal.jsx';
 
 
 export const DailyMeal = props => {
