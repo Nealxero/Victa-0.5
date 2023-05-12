@@ -6,12 +6,12 @@ import "../styles/searchbar.css";
 import injectContext from "./store/appContext";
 import Dashboard from "./pages/dashboard.jsx";
 import RecipeSearch from "./pages/recipesearch.jsx";
-import { Favorites } from "./pages/favorites.jsx";
+import { Favorites } from "./pages/favorites";
 import Sidebar from "./component/sidebar.jsx";
 import Account from "./pages/account.jsx"; // this wasn't here
 import Logout from "./pages/logout.jsx";
 import ScrollToTop from "./component/scrollToTop";
-import { LandingPage } from "./pages/landing.jsx";
+import { LandingPage } from "./pages/landing";
 import { Login } from "./pages/login";
 import { SignUp } from "./pages/signup";
 import { ForgotPassword } from "./pages/forgot";

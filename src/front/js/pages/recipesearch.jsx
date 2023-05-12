@@ -1,11 +1,11 @@
 import React from "react";
 import SearchBar from "../component/searchbar.jsx";
-// import BookData from '../../../../data.json';data={""}BookData
+import BookData from '../../../../data.json';
 
 const RecipeSearch = ()=>{
     return (
         <>
-            <SearchBar placeholder="Search..." />
+            <SearchBar placeholder="Search..." data={BookData}/>
         </>
     );
 };
